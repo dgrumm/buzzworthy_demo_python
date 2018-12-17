@@ -2,7 +2,7 @@ from __future__ import print_function
 import random
 
 buzz = ('continuous delivery', 'continuous testing', 'continuous integration',
-    'continuous deployment', 'continuous improvement', 'devops', 'digital transformation')
+    'continuous deployment', 'continuous improvement', 'continous everything', 'devops', 'digital transformation')
 adjectives = ('complete', 'modern', 'self-service', 'integrated', 'end-to-end')
 adverbs = ('remarkably', 'enormously', 'substantially', 'significantly',
     'seriously')
