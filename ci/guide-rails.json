@@ -128,6 +128,171 @@
 						"UnhealthyThresholdCount": 0
 					}
 				}
+			},
+			{
+				"name": "Isolation",
+				"segment_type": "isolation",
+				"run_after": [
+					"Build"
+				],
+				"exit_actions": {
+					"default": {
+						"fetch_logs": true,
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": true,
+							"properties": null
+						},
+						"delete_instances": true
+					},
+					"on_success": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": null
+					},
+					"on_failure": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": null
+					},
+					"on_abort": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": null
+					}
+				},
+				"deployment_strategy": {
+					"canaries": 1,
+					"max_in_flight": 1,
+					"canary_watch_time": "5000-30000",
+					"update_watch_time": "5000-30000",
+					"serial": false
+				},
+				"application_init": {
+					"command": "",
+					"arguments": null
+				},
+				"process": {
+					"init": {
+						"command": "python webapp.py"
+					}
+				},
+				"package_dependencies": [
+					"((application.name))"
+				],
+				"instance_tags": [
+					{
+						"name": "application.name",
+						"value": "((application.name))"
+					}
+				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "default",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.isolation))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.isolation))"
+						],
+						"dependencies": [
+							{
+								"name": "consul",
+								"release": "consul",
+								"provides": [
+									{
+										"name": "consul_servers.as",
+										"value": "consul_1"
+									}
+								],
+								"consumes": [
+									{
+										"name": "consul_servers.from",
+										"value": "consul_1"
+									}
+								],
+								"properties": [
+									{
+										"name": "consul.servicename",
+										"value": "((consul.servicename))"
+									},
+									{
+										"name": "consul.environment",
+										"value": "((consul.environment))"
+									},
+									{
+										"name": "consul.datacenter",
+										"value": "((consul.datacenter))"
+									},
+									{
+										"name": "consul.server",
+										"value": "false"
+									},
+									{
+										"name": "consul.joinservers",
+										"value": "((consul.joinservers))"
+									},
+									{
+										"name": "calculi.intermediate.cert",
+										"value": "grsecret:tls.cert"
+									},
+									{
+										"name": "calculi.intermediate.key",
+										"value": "grsecret:tls.key"
+									}
+								],
+								"deployment_strategy": {
+									"canary_watch_time": "",
+									"update_watch_time": "",
+									"serial": false
+								}
+							}
+						]
+					}
+				],
+				"post_deployment_actions": {
+					"instances": null,
+					"loadbalanced": false,
+					"loadbalancer": {
+						"TargetGroupName": "",
+						"TargetGroupPort": 0,
+						"TargetGroupProtocol": "",
+						"TargetType": "",
+						"VPCID": "",
+						"HealthCheckEnabled": false,
+						"HealthCheckPort": "",
+						"UnhealthyThresholdCount": 0
+					}
+				}
 			}
 		],
 		"exit_actions": {
@@ -234,7 +399,12 @@
 				"command": "bin/start-service.sh"
 			}
 		},
-		"releases": []
+		"releases": [
+			{
+				"name": "consul",
+				"version": "latest"
+			}
+		]
 	},
 	"organization": {
 		"orgname": "Tutorial"
