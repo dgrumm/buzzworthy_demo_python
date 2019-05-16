@@ -132,8 +132,41 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
+				"persistent": true,
 				"run_after": [
 					"Build"
+				],
+				"job_steps": [
+					{
+						"name": "RUN apk",
+						"definition": "RUN apk",
+						"command": "apk add --update python py-pip",
+						"properties": null
+					},
+					{
+						"name": "COPY requirements",
+						"definition": "COPY requirements",
+						"command": "cp requirements.txt /src/requirements.txt",
+						"properties": null
+					},
+					{
+						"name": "RUN pip install",
+						"definition": "RUN pip install",
+						"command": "pip install -r /src/requirements.txt",
+						"properties": null
+					},
+					{
+						"name": "COPY webapp",
+						"definition": "COPY webapp",
+						"command": "cp webapp.py /src/webapp.py",
+						"properties": null
+					},
+					{
+						"name": "COPY buzz",
+						"definition": "COPY buzz",
+						"command": "cp buzz /src/buzz",
+						"properties": null
+					}
 				],
 				"exit_actions": {
 					"default": {
@@ -147,7 +180,7 @@
 							}
 						],
 						"code_analysis": {
-							"publish": true,
+							"publish": false,
 							"properties": null
 						},
 						"delete_instances": true
@@ -161,7 +194,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_failure": {
 						"notifications": [
@@ -172,7 +208,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_abort": {
 						"notifications": [
@@ -183,7 +222,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					}
 				},
 				"deployment_strategy": {
@@ -199,7 +241,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "python webapp.py"
+						"command": "python /src/webapp.py"
 					}
 				},
 				"package_dependencies": [
@@ -216,8 +258,8 @@
 						"name": "((application.name))",
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
-						"vm_type": "default",
-						"os_type": "default",
+						"vm_type": "small",
+						"os_type": "linux-ubuntu",
 						"networks": [
 							"((deploy.target.network.isolation))"
 						],
@@ -271,8 +313,8 @@
 									}
 								],
 								"deployment_strategy": {
-									"canary_watch_time": "",
-									"update_watch_time": "",
+									"canary_watch_time": "2000-60000",
+									"update_watch_time": "2000-60000",
 									"serial": false
 								}
 							}
@@ -349,27 +391,33 @@
 		"default_properties": [
 			{
 				"name": "quality.coverage.error",
-				"value": 0.1
+				"value": 0.1,
+				"type": "number"
 			},
 			{
 				"name": "quality.coverage.warn",
-				"value": 0.66
+				"value": 0.66,
+				"type": "number"
 			},
 			{
 				"name": "quality.lint.error",
-				"value": 20
+				"value": 20,
+				"type": "number"
 			},
 			{
 				"name": "quality.lint.warn",
-				"value": 10
+				"value": 10,
+				"type": "number"
 			},
 			{
 				"name": "quality.security.error",
-				"value": 66
+				"value": 66,
+				"type": "number"
 			},
 			{
 				"name": "quality.security.warn",
-				"value": 10
+				"value": 10,
+				"type": "number"
 			}
 		],
 		"deployment_files": [
