@@ -32,7 +32,7 @@
 					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "pip install pytest\npython -m pytest -v --junit-xml test.xml",
+						"command": "pip install pytest pytest-cov cython numpy buzz\npython -m pytest -v --junit-xml test.xml",
 						"properties": null
 					}
 				],
