@@ -102,7 +102,7 @@
 						"dependencies": [],
 						"downloads": [],
 						"files": [
-							"((application.name))*"
+							"./"
 						],
 						"package_install_command": "",
 						"installed_path": ""
