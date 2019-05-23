@@ -32,13 +32,19 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install cython numpy\npip install pytest pytest-cov buzz",
+						"command": "pip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
 						"properties": null
 					},
 					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "python -m pytest -v --junit-xml test.xml",
+						"command": "python -m pytest -v --junit-xml test.xml --cov-report xml:coverage.xml\n",
+						"properties": null
+					},
+					{
+						"name": "Display coverage xml data",
+						"definition": "Display coverage xml data",
+						"command": "cat coverage.xml",
 						"properties": null
 					}
 				],
