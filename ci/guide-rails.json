@@ -38,7 +38,7 @@
 					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\n",
+						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\n",
 						"properties": null
 					}
 				],
