@@ -38,13 +38,7 @@
 					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "python -m pytest -v --junit-xml test.xml --cov-report xml:coverage.xml\n",
-						"properties": null
-					},
-					{
-						"name": "Display coverage xml data",
-						"definition": "Display coverage xml data",
-						"command": "cat coverage.xml",
+						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\n",
 						"properties": null
 					}
 				],
