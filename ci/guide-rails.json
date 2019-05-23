@@ -30,9 +30,15 @@
 				"segment_type": "build",
 				"job_steps": [
 					{
+						"name": "Install dependencies",
+						"definition": "Install dependencies",
+						"command": "pip install cython numpy\npip install pytest pytest-cov buzz",
+						"properties": null
+					},
+					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "pip install pytest pytest-cov cython numpy buzz\npython -m pytest -v --junit-xml test.xml",
+						"command": "python -m pytest -v --junit-xml test.xml",
 						"properties": null
 					}
 				],
