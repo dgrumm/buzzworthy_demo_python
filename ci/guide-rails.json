@@ -32,7 +32,7 @@
 					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "python -m pytest -v",
+						"command": "pip install pytest\npython -m pytest -v",
 						"properties": null
 					}
 				],
@@ -266,6 +266,7 @@
 						"availability_zones": [
 							"((deploy.target.zone.isolation))"
 						],
+						"deployment_strategy": {},
 						"dependencies": [
 							{
 								"name": "consul",
@@ -311,12 +312,7 @@
 										"name": "calculi.intermediate.key",
 										"value": "grsecret:tls.key"
 									}
-								],
-								"deployment_strategy": {
-									"canary_watch_time": "2000-60000",
-									"update_watch_time": "2000-60000",
-									"serial": false
-								}
+								]
 							}
 						]
 					}
