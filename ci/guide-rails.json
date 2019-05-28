@@ -30,9 +30,15 @@
 				"segment_type": "build",
 				"job_steps": [
 					{
+						"name": "Install dependencies",
+						"definition": "Install dependencies",
+						"command": "pip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
+						"properties": null
+					},
+					{
 						"name": "Test",
 						"definition": "Test",
-						"command": "pip install pytest\npython -m pytest -v --junit-xml test.xml",
+						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\necho 'Done'\n",
 						"properties": null
 					}
 				],
@@ -409,7 +415,7 @@
 		},
 		"process": {
 			"init": {
-				"command": "bin/start-service.sh"
+				"command": ""
 			}
 		},
 		"releases": [
