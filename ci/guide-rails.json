@@ -384,38 +384,7 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [
-			{
-				"name": "quality.coverage.error",
-				"value": 0.1,
-				"type": "number"
-			},
-			{
-				"name": "quality.coverage.warn",
-				"value": 0.66,
-				"type": "number"
-			},
-			{
-				"name": "quality.lint.error",
-				"value": 20,
-				"type": "number"
-			},
-			{
-				"name": "quality.lint.warn",
-				"value": 10,
-				"type": "number"
-			},
-			{
-				"name": "quality.security.error",
-				"value": 66,
-				"type": "number"
-			},
-			{
-				"name": "quality.security.warn",
-				"value": 10,
-				"type": "number"
-			}
-		],
+		"default_properties": [],
 		"deployment_files": [
 			{
 				"source_path": "ci/config/application.config",
