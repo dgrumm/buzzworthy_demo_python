@@ -146,37 +146,37 @@
 					{
 						"name": "RUN apk",
 						"definition": "RUN apk",
-						"command": "apk add --update python py-pip",
+						"command": "echo \"1. RUN apk\"\napk add --update python py-pip",
 						"properties": null
 					},
 					{
 						"name": "COPY requirements",
 						"definition": "COPY requirements",
-						"command": "cp requirements.txt /src/requirements.txt",
+						"command": "echo \"2. COPY requirements\"\ncp requirements.txt /src/requirements.txt",
 						"properties": null
 					},
 					{
 						"name": "RUN pip install",
 						"definition": "RUN pip install",
-						"command": "pip install -r /src/requirements.txt",
+						"command": "echo \"3. RUN pip install\"\npip install -r /src/requirements.txt",
 						"properties": null
 					},
 					{
 						"name": "COPY webapp",
 						"definition": "COPY webapp",
-						"command": "cp webapp.py /src/webapp.py",
+						"command": "echo \"4. COPY webapp\"\ncp webapp.py /src/webapp.py",
 						"properties": null
 					},
 					{
 						"name": "COPY buzz",
 						"definition": "COPY buzz",
-						"command": "cp buzz /src/buzz",
+						"command": "echo \"5. COPY buzz\"\ncp buzz /src/buzz",
 						"properties": null
 					},
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"",
+						"command": "echo \"6. ECHO environment\"\nprintenv | sort\npwd\necho \"JOB STEPS COMPLETE\"",
 						"properties": null
 					}
 				],
@@ -253,7 +253,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "python /src/webapp.py"
+						"command": "python ./src/webapp.py"
 					}
 				},
 				"package_dependencies": [
