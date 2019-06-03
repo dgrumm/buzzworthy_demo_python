@@ -176,7 +176,7 @@
 					{
 						"name": "PRINTENV",
 						"definition": "PRINTENV",
-						"command": "printenv | sort\npwd",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd",
 						"properties": null
 					}
 				],
