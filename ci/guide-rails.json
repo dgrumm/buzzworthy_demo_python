@@ -172,6 +172,12 @@
 						"definition": "COPY buzz",
 						"command": "cp buzz /src/buzz",
 						"properties": null
+					},
+					{
+						"name": "PRINTENV",
+						"definition": "PRINTENV",
+						"command": "printenv | sort\npwd",
+						"properties": null
 					}
 				],
 				"exit_actions": {
