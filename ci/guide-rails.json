@@ -32,7 +32,7 @@
 					{
 						"name": "Docker",
 						"definition": "Docker",
-						"command": "docker ps",
+						"command": "service docker start; docker ps",
 						"properties": null
 					},
 					{
