@@ -32,7 +32,7 @@
 					{
 						"name": "Docker",
 						"definition": "Docker",
-						"command": "service docker start\nmkdir -p /sys/fs/cgroup/systemd\nmount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd\ndocker ps\nservice docker stop",
+						"command": "set -o pipefail\nservice docker start\n#mkdir -p /sys/fs/cgroup/systemd\n#mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd\ndocker ps\nservice docker stop",
 						"properties": null
 					},
 					{
