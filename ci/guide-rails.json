@@ -138,7 +138,6 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
-				"persistent": true,
 				"run_after": [
 					"Build"
 				],
@@ -177,6 +176,12 @@
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
 						"command": "echo \"6. ECHO environment\"\nprintenv | sort\npwd\necho \"JOB STEPS COMPLETE\"",
+						"properties": null
+					},
+					{
+						"name": "START webapp",
+						"definition": "START webapp",
+						"command": "echo \"7. Starting buzzworthy webapp\"\npython /src/webapp.py",
 						"properties": null
 					}
 				],
@@ -253,7 +258,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "python ./src/webapp.py"
+						"command": ""
 					}
 				},
 				"package_dependencies": [
@@ -370,7 +375,7 @@
 							}
 						],
 						"code_analysis": {
-							"publish": true,
+							"publish": false,
 							"properties": null
 						},
 						"delete_instances": true
@@ -384,7 +389,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_failure": {
 						"notifications": [
@@ -395,7 +403,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					},
 					"on_abort": {
 						"notifications": [
@@ -406,7 +417,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
 					}
 				},
 				"deployment_strategy": {
@@ -540,7 +554,7 @@
 							}
 						],
 						"code_analysis": {
-							"publish": true,
+							"publish": false,
 							"properties": null
 						},
 						"delete_instances": false
@@ -554,7 +568,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null,
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
 						"delete_instances": false
 					},
 					"on_failure": {
@@ -566,7 +583,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null,
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
 						"delete_instances": false
 					},
 					"on_abort": {
@@ -578,7 +598,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null,
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
 						"delete_instances": false
 					}
 				},
