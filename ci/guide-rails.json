@@ -36,9 +36,15 @@
 						"properties": null
 					},
 					{
+						"name": "Simulate error",
+						"definition": "Simulate error",
+						"command": "fail",
+						"properties": null
+					},
+					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "fail\npip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
+						"command": "pip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
 						"properties": null
 					},
 					{
