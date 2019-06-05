@@ -32,7 +32,7 @@
 					{
 						"name": "Docker",
 						"definition": "Docker",
-						"command": "echo \"Force failure\"\nexit 1\n",
+						"command": "# Executing docker commands\ndocker ps\n",
 						"properties": null
 					},
 					{
