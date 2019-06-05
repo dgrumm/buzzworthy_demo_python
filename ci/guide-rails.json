@@ -30,12 +30,6 @@
 				"segment_type": "build",
 				"job_steps": [
 					{
-						"name": "Simulate error",
-						"definition": "Simulate error",
-						"command": "fail",
-						"properties": null
-					},
-					{
 						"name": "Docker",
 						"definition": "Docker",
 						"command": "# Executing docker commands\ndocker ps\n",
@@ -44,7 +38,7 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
+						"command": "fail\npip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
 						"properties": null
 					},
 					{
