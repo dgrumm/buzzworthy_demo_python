@@ -32,7 +32,7 @@
 					{
 						"name": "Docker",
 						"definition": "Docker",
-						"command": "# Executing docker commands\ndocker ps\n",
+						"command": "# Executing docker commands\ndocker ps\ndocker build .\n",
 						"properties": null
 					},
 					{
