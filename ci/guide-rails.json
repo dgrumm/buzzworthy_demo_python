@@ -32,7 +32,7 @@
 					{
 						"name": "Docker",
 						"definition": "Docker",
-						"command": "set -o pipefail\nservice docker start\ndocker ps\necho \"Executed\"\nservice docker stop\necho \"Stopped\"",
+						"command": "(docker ps)\n",
 						"properties": null
 					},
 					{
