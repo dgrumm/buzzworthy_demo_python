@@ -539,7 +539,7 @@
 			{
 				"name": "build",
 				"image": {
-					"name": "docker-registry.service.consul:443/pipeline-image-go-tools",
+					"name": "docker-registry.service.consul:443/pipeline-image-python-tools",
 					"version": "latest",
 					"location": "docker-registry.service.consul:443"
 				}
