@@ -143,45 +143,21 @@
 				],
 				"job_steps": [
 					{
-						"name": "RUN apt-get update",
-						"definition": "RUN apt-get update",
-						"command": "echo \"1. RUN apt-get update\"\napt-get update",
-						"properties": null
-					},
-					{
-						"name": "COPY requirements",
-						"definition": "COPY requirements",
-						"command": "echo \"2. COPY requirements\"\ncp requirements.txt /src/requirements.txt",
-						"properties": null
-					},
-					{
 						"name": "RUN pip install",
 						"definition": "RUN pip install",
-						"command": "echo \"3. RUN pip install\"\npip install -r /src/requirements.txt",
-						"properties": null
-					},
-					{
-						"name": "COPY webapp",
-						"definition": "COPY webapp",
-						"command": "echo \"4. COPY webapp\"\ncp webapp.py /src/webapp.py",
-						"properties": null
-					},
-					{
-						"name": "COPY buzz",
-						"definition": "COPY buzz",
-						"command": "echo \"5. COPY buzz\"\ncp buzz /src/buzz",
+						"command": "echo \"1. RUN pip install\"\npip install -r requirements.txt",
 						"properties": null
 					},
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"6. ECHO environment\"\nprintenv | sort\npwd\necho \"JOB STEPS COMPLETE\"",
+						"command": "echo \"2. ECHO environment\"\nprintenv | sort\npwd\necho \"JOB STEPS COMPLETE\"",
 						"properties": null
 					},
 					{
 						"name": "START webapp",
 						"definition": "START webapp",
-						"command": "echo \"7. Starting buzzworthy webapp\"\npython /src/webapp.py",
+						"command": "echo \"3. Starting buzzworthy webapp\"\npython webapp.py",
 						"properties": null
 					}
 				],
