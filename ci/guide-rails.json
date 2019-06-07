@@ -143,9 +143,9 @@
 				],
 				"job_steps": [
 					{
-						"name": "RUN apk",
-						"definition": "RUN apk",
-						"command": "echo \"1. RUN apk\"\napk add --update python py-pip",
+						"name": "RUN apt-get update",
+						"definition": "RUN apt-get update",
+						"command": "echo \"1. RUN apt-get update\"\napt-get update",
 						"properties": null
 					},
 					{
@@ -276,7 +276,7 @@
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
 						"vm_type": "small",
-						"os_type": "linux-ubuntu",
+						"os_type": "default",
 						"networks": [
 							"((deploy.target.network.isolation))"
 						],
@@ -454,7 +454,7 @@
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
 						"vm_type": "small",
-						"os_type": "linux-ubuntu",
+						"os_type": "default",
 						"networks": [
 							"((deploy.target.network.integration))"
 						],
@@ -636,7 +636,7 @@
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
 						"vm_type": "small",
-						"os_type": "linux-ubuntu",
+						"os_type": "default",
 						"networks": [
 							"((deploy.target.network.release))"
 						],
