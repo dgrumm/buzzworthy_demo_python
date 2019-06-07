@@ -145,7 +145,7 @@
 					{
 						"name": "RUN apt-get update",
 						"definition": "RUN apt-get update",
-						"command": "echo \"RUN apt-get update\"\napt-get update\napt-get install python-pip",
+						"command": "echo \"RUN apt-get update\"\napt-get update\napt-get install -y --no-install-recommends python-pip",
 						"properties": null
 					},
 					{
