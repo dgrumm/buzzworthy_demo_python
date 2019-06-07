@@ -145,13 +145,13 @@
 					{
 						"name": "RUN apt-get update",
 						"definition": "RUN apt-get update",
-						"command": "echo \"RUN apt-get update\"\napt-get update",
+						"command": "echo \"RUN apt-get update\"\napt-get update\napt-get install python-pip",
 						"properties": null
 					},
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"ECHO environment\"\nprintenv | sort\npwd\nwhich python\npython --version\npython3 --version\npip --version\npip3 --version\necho \"ECHO environment complete\"",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\npwd\nwhich python\npython --version\npython3 --version\npip --version\necho \"ECHO environment complete\"",
 						"properties": null
 					},
 					{
