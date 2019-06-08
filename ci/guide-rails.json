@@ -143,27 +143,9 @@
 				],
 				"job_steps": [
 					{
-						"name": "RUN apt-get update",
-						"definition": "RUN apt-get update",
-						"command": "echo \"RUN apt-get update\"\napt-get update\napt-get install -y --no-install-recommends python-pip",
-						"properties": null
-					},
-					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"",
-						"properties": null
-					},
-					{
-						"name": "RUN pip install",
-						"definition": "RUN pip install",
-						"command": "echo \"RUN pip install\"\npip install -r ${APPLICATION_RUN_DIR}/requirements.txt",
-						"properties": null
-					},
-					{
-						"name": "START webapp",
-						"definition": "START webapp",
-						"command": "echo \"STARTing buzzworthy webapp\"\npython ${APPLICATION_RUN_DIR}/webapp.py",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"",
 						"properties": null
 					}
 				],
@@ -775,7 +757,12 @@
 				"type": "number"
 			}
 		],
-		"deployment_files": [],
+		"deployment_files": [
+			{
+				"source_path": "ci/bin/install-and-start.sh",
+				"target_path": "bin/install-and-start.sh"
+			}
+		],
 		"application_init": {
 			"command": "",
 			"arguments": null
