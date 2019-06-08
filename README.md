@@ -1,4 +1,4 @@
-## Buzzworthy-Demo-Python
+# Buzzworthy-Demo-Python
 
 This is a working application that can be used to demonstrate how to build, test, deploy and verify a complete CI/CD pipeline using Guide-Rails®
 
@@ -11,7 +11,7 @@ __Important:__
  * You will *not* need to setup a local Python environment if you don't want to - you can build, test, deploy and verify the demo application via the Guide-Rails® UI or editing configuration and pushing to your Git repository
 
 
-### Local Setup
+## Local Setup (optional)
 #### Install Python
 
    There are a number of online guides for installing and/or upgrading Python on your system at https://www.python.org/. For this tutorial you need Python 2.7 or later
@@ -33,7 +33,7 @@ $ source venv/bin/activate
 ```
 
 #### Install dependencies
-The tutorial application uses `pytest`for unit testing and `flask` web application framework. Required versions of these dependencies are in the `requirements.txt` file.
+The tutorial application uses `pytest` for unit testing and `flask` web application framework. Required versions of these dependencies are in the `requirements.txt` file.
 ```
 (venv) $ pip install -r requirements.txt
 ```
@@ -59,7 +59,23 @@ tests/test_generator.py::test_generate_buzz_of_at_least_five_words PASSED
  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
-### Define your pipeline in Guide-Rails®
-#### Configure your `build` segment(s)
-#### Configure your `deploy-and-test` segment(s)
-#### Configure your `production` segment(s)
+## Define your CI/CD pipeline in Guide-Rails®
+Setting up your pipeline in Guide-Rails® is easy. The following steps assume that you already have a Guide-Rails® account and have completed initial configuration of your subscription with required information for your Company, Organizations, Projects, etc. This tutorial also assumes that you will be using the Guide-Rails® Configuration Console for setting up your pipeline. Alternatively, you can define your pipeline by creating a  configuration file and storing it in `ci/guide-rails.json` in the root directory of your application's source code repository.
+
+#### Onboarding your application Component
+The first step is to create a new Component in Guide-Rails which will be associated to your *buzzworthy* application.
+
+From the top navigation bar of the Guide-Rails® Configuration Console, navigate to the Project where your new Component will live, then choose `Create New` from the Component menu:
+
+
+Second, provide Guide-Rails® with a little information about the application (aka Component) you wish to onboard. In the Guide-Rails® Configuration Console, you will provide the following:
+
+
+
+#### Configure your `Build` segment(s)
+
+
+#### Configure your `Isolation`, `Integration`, `Release` segment(s)
+
+
+#### Configure your `Production` segment(s)
