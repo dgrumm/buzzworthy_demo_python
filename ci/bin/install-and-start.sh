@@ -2,12 +2,17 @@
 
 ## this script will install dependencies for the application
 
-echo "ECHO environment"
+echo "ECHO environment from inside install-and-start.sh"
 printenv | sort
 echo "=-=-=-=-=-=-=-=-=-="
 
 echo "ECHO file listing"
 ls -lR
+
+cat  ./bin/deploy_ctl
+
+ls -lR ${APPLICATION_JOB_DIR}
+cd ${APPLICATION_JOB_DIR} 
 echo "=-=-=-=-=-=-=-=-=-="
 
 echo "RUN apt-get update"
