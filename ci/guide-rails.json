@@ -222,7 +222,7 @@
 				},
 				"process": {
 					"init": {
-						"command": ""
+						"command": "bin/install-and-start.sh"
 					}
 				},
 				"package_dependencies": [
