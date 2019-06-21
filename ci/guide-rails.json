@@ -50,7 +50,7 @@
 					{
 						"name": "Echo Property Value",
 						"definition": "Echo Property Value",
-						"command": "echo \"test.attribute = ((test.attribute))\"",
+						"command": "echo \"test.attribute = ${test.attribute}\"",
 						"properties": null
 					}
 				],
