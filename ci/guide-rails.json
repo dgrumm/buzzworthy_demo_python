@@ -46,6 +46,12 @@
 						"definition": "Test",
 						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\necho 'Done'\n",
 						"properties": null
+					},
+					{
+						"name": "Echo Property Value",
+						"definition": "Echo Property Value",
+						"command": "echo \"test.attribute = ((test.attribute))\"",
+						"properties": null
 					}
 				],
 				"exit_actions": {
@@ -277,7 +283,7 @@
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
 						"vm_type": "small",
-						"os_type": "linux-ubuntu",
+						"os_type": "default",
 						"networks": [
 							"((deploy.target.network.isolation))"
 						],
@@ -402,7 +408,14 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [],
+		"default_properties": [
+			{
+				"name": "test.attribute",
+				"description": "not really used for anything",
+				"value": "foo",
+				"type": "string"
+			}
+		],
 		"deployment_files": [],
 		"application_init": {
 			"command": "",
