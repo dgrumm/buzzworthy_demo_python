@@ -1,4 +1,4 @@
-TODO: Update this so that Guide-Rails users can follow along.
+#TODO: Update this so that Guide-Rails users can follow along. 
 
 
 This is a small demonstration of modern CI/CD tooling, shamelessly borrowed and adapted from Rob van der Leek
