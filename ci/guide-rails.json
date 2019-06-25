@@ -408,14 +408,7 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [
-			{
-				"name": "test.attribute",
-				"description": "not really used for anything",
-				"value": "foo",
-				"type": "string"
-			}
-		],
+		"default_properties": [],
 		"deployment_files": [],
 		"application_init": {
 			"command": "",
