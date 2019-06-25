@@ -755,6 +755,12 @@
 				"name": "quality.security.warn",
 				"value": 10,
 				"type": "number"
+			},
+			{
+				"name": "test.prop",
+				"description": "Test Property - Purposely invalid value",
+				"value": "fasle",
+				"type": "boolean"
 			}
 		],
 		"deployment_files": [
