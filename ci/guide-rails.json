@@ -146,9 +146,7 @@
 						"UnhealthyThresholdCount": 0
 					}
 				},
-				"docker_options": {
-					"repository": "foo/bar:baz"
-				}
+				"docker_options": {}
 			},
 			{
 				"name": "Isolation",
