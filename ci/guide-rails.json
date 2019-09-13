@@ -139,6 +139,9 @@
 						"HealthCheckPort": "",
 						"UnhealthyThresholdCount": 0
 					}
+				},
+				"docker_options": {
+					"repository": "foo/bar"
 				}
 			},
 			{
