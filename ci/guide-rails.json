@@ -30,12 +30,6 @@
 				"segment_type": "build",
 				"job_steps": [
 					{
-						"name": "Docker",
-						"definition": "Docker",
-						"command": "# Executing docker commands\ndocker ps\ndocker build .\n",
-						"properties": null
-					},
-					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
 						"command": "pip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
