@@ -141,7 +141,7 @@
 					}
 				},
 				"docker_options": {
-					"repository": "circleci/python"
+					"repository": "travisci/ci-python"
 				}
 			},
 			{
