@@ -141,7 +141,7 @@
 					}
 				},
 				"docker_options": {
-					"repository": "travisci/ci-python"
+					"repository": "travisci/ci-python:latest"
 				}
 			},
 			{
