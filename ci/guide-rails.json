@@ -141,7 +141,7 @@
 					}
 				},
 				"docker_options": {
-					"repository": "python:3.7-alpine"
+					"repository": "python:alpine"
 				}
 			},
 			{
