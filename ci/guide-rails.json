@@ -135,7 +135,7 @@
 					}
 				},
 				"docker_options": {
-					"repository": "python:slim"
+					"repository": "python"
 				}
 			},
 			{
