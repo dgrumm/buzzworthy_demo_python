@@ -216,7 +216,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "python3 webapp.py"
+						"command": "ci/bin/install-and-start.sh"
 					}
 				},
 				"package_dependencies": [
