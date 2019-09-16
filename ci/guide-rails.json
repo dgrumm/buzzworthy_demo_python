@@ -216,7 +216,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "ci/bin/install-and-start.sh"
+						"command": "echo \"whereami\"; pwd; ls -la; printenv | sort"
 					}
 				},
 				"package_dependencies": [
