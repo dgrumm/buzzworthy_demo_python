@@ -228,23 +228,6 @@
 						"value": "((application.name))"
 					}
 				],
-				"instance_groups": [
-					{
-						"name": "((application.name))",
-						"number_of_instances": 1,
-						"persistent_disk_type": "",
-						"vm_type": "default",
-						"os_type": "default",
-						"networks": [
-							"((deploy.target.network.isolation))"
-						],
-						"availability_zones": [
-							"((deploy.target.zone.isolation))"
-						],
-						"deployment_strategy": {},
-						"dependencies": []
-					}
-				],
 				"post_deployment_actions": {
 					"instances": null,
 					"loadbalanced": false,
@@ -279,7 +262,7 @@
 							}
 						],
 						"code_analysis": {
-							"publish": true,
+							"publish": false,
 							"properties": null
 						},
 						"delete_instances": false
@@ -293,7 +276,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null,
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
 						"delete_instances": false
 					},
 					"on_failure": {
@@ -305,7 +291,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null,
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
 						"delete_instances": false
 					},
 					"on_abort": {
@@ -317,7 +306,10 @@
 								"message": ""
 							}
 						],
-						"code_analysis": null,
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
 						"delete_instances": false
 					}
 				},
