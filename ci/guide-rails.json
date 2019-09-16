@@ -134,9 +134,7 @@
 						"UnhealthyThresholdCount": 0
 					}
 				},
-				"docker_options": {
-					"repository": "python"
-				}
+				"docker_options": {}
 			},
 			{
 				"name": "Isolation",
