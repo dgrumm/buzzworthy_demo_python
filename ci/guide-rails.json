@@ -32,19 +32,13 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install -r requirements.txt\n#pip install cython numpy \u003e/dev/null\n#pip install pytest pytest-cov buzz \u003e/dev/null",
+						"command": "pip install -r requirements.txt",
 						"properties": null
 					},
 					{
-						"name": "Test",
-						"definition": "Test",
-						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\necho 'Done'\n",
-						"properties": null
-					},
-					{
-						"name": "Echo Property Value",
-						"definition": "Echo Property Value",
-						"command": "#echo \"test.attribute = test.attribute\"",
+						"name": "Run unit tests and generate reports",
+						"definition": "Run unit tests and generate reports",
+						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\n",
 						"properties": null
 					}
 				],
@@ -151,44 +145,6 @@
 				"run_after": [
 					"Build"
 				],
-				"job_steps": [
-					{
-						"name": "RUN apk",
-						"definition": "RUN apk",
-						"command": "apk add --update python py-pip",
-						"properties": null
-					},
-					{
-						"name": "COPY requirements",
-						"definition": "COPY requirements",
-						"command": "cp requirements.txt /src/requirements.txt",
-						"properties": null
-					},
-					{
-						"name": "RUN pip install",
-						"definition": "RUN pip install",
-						"command": "pip install -r /src/requirements.txt",
-						"properties": null
-					},
-					{
-						"name": "COPY webapp",
-						"definition": "COPY webapp",
-						"command": "cp webapp.py /src/webapp.py",
-						"properties": null
-					},
-					{
-						"name": "COPY buzz",
-						"definition": "COPY buzz",
-						"command": "cp buzz /src/buzz",
-						"properties": null
-					},
-					{
-						"name": "PRINTENV",
-						"definition": "PRINTENV",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd",
-						"properties": null
-					}
-				],
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
@@ -262,7 +218,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "python /src/webapp.py"
+						"command": "python3 webapp.py"
 					}
 				},
 				"package_dependencies": [
