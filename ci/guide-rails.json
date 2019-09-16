@@ -228,6 +228,142 @@
 						"value": "((application.name))"
 					}
 				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "default",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.isolation))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.isolation))"
+						],
+						"deployment_strategy": {},
+						"dependencies": []
+					}
+				],
+				"post_deployment_actions": {
+					"instances": null,
+					"loadbalanced": false,
+					"loadbalancer": {
+						"TargetGroupName": "",
+						"TargetGroupPort": 0,
+						"TargetGroupProtocol": "",
+						"TargetType": "",
+						"VPCID": "",
+						"HealthCheckEnabled": false,
+						"HealthCheckPort": "",
+						"UnhealthyThresholdCount": 0
+					}
+				}
+			},
+			{
+				"name": "Production",
+				"segment_type": "production",
+				"persistent": true,
+				"run_after": [
+					"Isolation"
+				],
+				"exit_actions": {
+					"default": {
+						"fetch_logs": true,
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": true,
+							"properties": null
+						},
+						"delete_instances": false
+					},
+					"on_success": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": null,
+						"delete_instances": false
+					},
+					"on_failure": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": null,
+						"delete_instances": false
+					},
+					"on_abort": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": null,
+						"delete_instances": false
+					}
+				},
+				"deployment_strategy": {
+					"canaries": 1,
+					"max_in_flight": 1,
+					"canary_watch_time": "5000-30000",
+					"update_watch_time": "5000-30000",
+					"serial": false
+				},
+				"application_init": {
+					"command": "",
+					"arguments": null
+				},
+				"process": {
+					"init": {
+						"command": "echo \"howdy from prod\""
+					}
+				},
+				"package_dependencies": [
+					"((application.name))"
+				],
+				"instance_tags": [
+					{
+						"name": "application.name",
+						"value": "((application.name))"
+					}
+				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "default",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.production))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.production))"
+						],
+						"deployment_strategy": {},
+						"dependencies": []
+					}
+				],
+				"gated": true,
 				"post_deployment_actions": {
 					"instances": null,
 					"loadbalanced": false,
