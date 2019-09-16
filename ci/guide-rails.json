@@ -228,70 +228,6 @@
 						"value": "((application.name))"
 					}
 				],
-				"instance_groups": [
-					{
-						"name": "((application.name))",
-						"number_of_instances": 1,
-						"persistent_disk_type": "",
-						"vm_type": "small",
-						"os_type": "default",
-						"networks": [
-							"((deploy.target.network.isolation))"
-						],
-						"availability_zones": [
-							"((deploy.target.zone.isolation))"
-						],
-						"deployment_strategy": {},
-						"dependencies": [
-							{
-								"name": "consul",
-								"release": "consul",
-								"provides": [
-									{
-										"name": "consul_servers.as",
-										"value": "consul_1"
-									}
-								],
-								"consumes": [
-									{
-										"name": "consul_servers.from",
-										"value": "consul_1"
-									}
-								],
-								"properties": [
-									{
-										"name": "consul.servicename",
-										"value": "((consul.servicename))"
-									},
-									{
-										"name": "consul.environment",
-										"value": "((consul.environment))"
-									},
-									{
-										"name": "consul.datacenter",
-										"value": "((consul.datacenter))"
-									},
-									{
-										"name": "consul.server",
-										"value": "false"
-									},
-									{
-										"name": "consul.joinservers",
-										"value": "((consul.joinservers))"
-									},
-									{
-										"name": "calculi.intermediate.cert",
-										"value": "grsecret:tls.cert"
-									},
-									{
-										"name": "calculi.intermediate.key",
-										"value": "grsecret:tls.key"
-									}
-								]
-							}
-						]
-					}
-				],
 				"post_deployment_actions": {
 					"instances": null,
 					"loadbalanced": false,
@@ -370,12 +306,7 @@
 				"command": ""
 			}
 		},
-		"releases": [
-			{
-				"name": "consul",
-				"version": "latest"
-			}
-		]
+		"releases": []
 	},
 	"organization": {
 		"orgname": "Tutorial"
