@@ -32,7 +32,7 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install cython numpy \u003e/dev/null\npip install pytest pytest-cov buzz \u003e/dev/null",
+						"command": "pip install -r requirements.txt\n#pip install cython numpy \u003e/dev/null\n#pip install pytest pytest-cov buzz \u003e/dev/null",
 						"properties": null
 					},
 					{
