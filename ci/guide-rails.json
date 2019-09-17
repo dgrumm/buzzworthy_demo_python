@@ -147,7 +147,7 @@
 					{
 						"name": "Echo",
 						"definition": "Echo",
-						"command": "echo \"this is a job step that doesn't do much\"",
+						"command": "ps -ef | grep python",
 						"properties": null
 					}
 				],
@@ -224,7 +224,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "echo \"whereami\"; pwd; ls -la; printenv | sort"
+						"command": ""
 					}
 				},
 				"package_dependencies": [
@@ -234,6 +234,23 @@
 					{
 						"name": "application.name",
 						"value": "((application.name))"
+					}
+				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "default",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.isolation))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.isolation))"
+						],
+						"deployment_strategy": {},
+						"dependencies": []
 					}
 				],
 				"post_deployment_actions": {
@@ -434,15 +451,21 @@
 			}
 		},
 		"default_properties": [],
-		"deployment_files": [],
+		"deployment_files": [
+			{
+				"source_path": "ci/bin/install-and-start.sh",
+				"target_path": "bin/install-and-start.sh"
+			}
+		],
 		"application_init": {
 			"command": "",
 			"arguments": null
 		},
 		"process": {
 			"init": {
-				"command": ""
-			}
+				"command": "bin/install-and-start.sh"
+			},
+			"name": "python"
 		},
 		"releases": []
 	},
