@@ -456,7 +456,7 @@
 				"name": "pipeline",
 				"image": {
 					"name": "docker-registry.service.consul:443/pipeline-image-cli-test",
-					"version": "latest",
+					"version": "5.0.11",
 					"location": "docker-registry.service.consul:443"
 				}
 			},
