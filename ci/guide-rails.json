@@ -108,7 +108,7 @@
 						"dependencies": [],
 						"downloads": [],
 						"files": [
-							"./"
+							"./*"
 						],
 						"package_install_command": "",
 						"installed_path": ""
