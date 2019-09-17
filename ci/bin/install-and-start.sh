@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -exuo pipefail
+
 
 echo "ECHO environment from inside install-and-start.sh"
 printenv | sort
@@ -19,5 +21,7 @@ echo "=-=-=-=-=-=-=-=-=-="
 
 echo "START buzzworthy webapp"
 which python3
+
+pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 python3 webapp.py
 #python webapp.py
