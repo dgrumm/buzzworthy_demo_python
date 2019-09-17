@@ -250,7 +250,8 @@
 						"UnhealthyThresholdCount": 0
 					}
 				},
-				"docker_options": {}
+				"docker_options": {},
+				"source_code_available": true
 			},
 			{
 				"name": "Production",
