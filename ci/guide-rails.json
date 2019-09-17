@@ -143,6 +143,14 @@
 				"run_after": [
 					"Build"
 				],
+				"job_steps": [
+					{
+						"name": "Echo",
+						"definition": "Echo",
+						"command": "echo \"this is a job step that doesn't do much\"",
+						"properties": null
+					}
+				],
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
@@ -241,7 +249,8 @@
 						"HealthCheckPort": "",
 						"UnhealthyThresholdCount": 0
 					}
-				}
+				},
+				"docker_options": {}
 			},
 			{
 				"name": "Production",
