@@ -8,6 +8,11 @@ printenv | sort
 
 echo "=-=-=-=-=-=-=-=-=-="
 
+echo "ECHO directory listing"
+ls -lrt
+
+echo "=-=-=-=-=-=-=-=-=-="
+
 echo "ECHO virtual environment?"
 source ./venv/bin/activate
 
