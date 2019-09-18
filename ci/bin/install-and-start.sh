@@ -9,7 +9,7 @@ echo "=-=-=-=-=-=-=-=-=-="
 echo "=-=-=-=-=-=-=-=-=-="
 echo "ECHO file listings"
 echo "APPLICATION_JOB_DIR"
-ls -lR "${APPLICATION_JOB_DIR}
+ls -lR "${APPLICATION_JOB_DIR}"
 
 echo "APPLICATION_RUN_DIR"
 ls -lR "${APPLICATION_RUN_DIR}"
