@@ -2,22 +2,12 @@
 set -exuo pipefail
 
 echo "=-=-=-=-=-=-=-=-=-="
-
 echo "ECHO environment from inside install-and-start.sh"
 printenv | sort
+pwd
+ls -lR
 
 echo "=-=-=-=-=-=-=-=-=-="
-
-echo "ECHO directory listing"
-ls -lrt
-
-echo "=-=-=-=-=-=-=-=-=-="
-
-echo "ECHO virtual environment?"
-source ./venv/bin/activate
-
-echo "=-=-=-=-=-=-=-=-=-="
-
 echo "ECHO python3 installed?"
 which python3
 python3 --version
@@ -25,7 +15,15 @@ which pip3
 pip3 --version
 
 echo "=-=-=-=-=-=-=-=-=-="
+echo "ECHO create venv, install dependencies"
+pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+python3 -m virtualenv venv
+./venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+popd
 
+echo "=-=-=-=-=-=-=-=-=-="
 #echo "RUN apt-get update"
 #sudo apt-get install -y --no-install-recommends python3-pip
 #echo "=-=-=-=-=-=-=-=-=-="
@@ -38,7 +36,6 @@ echo "=-=-=-=-=-=-=-=-=-="
 #echo "RUN pip install"
 #pip3 install -r requirements.txt
 echo "=-=-=-=-=-=-=-=-=-="
-
 echo "START buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 python3 webapp.py
