@@ -12,7 +12,7 @@ cd ${APPLICATION_JOB_DIR}
 echo "=-=-=-=-=-=-=-=-=-="
 
 echo "RUN apt-get update"
-apt-get install -y --no-install-recommends python3-pip
+#apt-get install -y --no-install-recommends python3-pip
 echo "=-=-=-=-=-=-=-=-=-="
 
 echo "RUN pip install"
