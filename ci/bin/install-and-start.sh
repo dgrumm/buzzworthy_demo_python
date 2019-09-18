@@ -5,22 +5,24 @@ echo "=-=-=-=-=-=-=-=-=-="
 echo "ECHO environment from inside install-and-start.sh"
 printenv | sort
 pwd
-ls -lR
+ls -lRa
 
 echo "=-=-=-=-=-=-=-=-=-="
-echo "ECHO python3 installed?"
-which python3
-python3 --version
-which pip
-pip --version
+# echo "ECHO Bootstrap Pip"
+# curl https://bootstrap.pypa.io/3.3/get-pip.py --output get-pip.py && python get-pip.py --user
+# PATH=$PATH:$HOME/.local/bin
+#pip3 install -r requirements --user
 
 echo "=-=-=-=-=-=-=-=-=-="
 echo "ECHO create venv, install dependencies"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+ls -lRa
+
 python3 -m virtualenv venv
 ./venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
+python3 -m ensurepip --default-pip
+./venv/bin/pip install --upgrade pip
+./venv/bin/pip install -r requirements.txt
 popd
 
 echo "=-=-=-=-=-=-=-=-=-="
