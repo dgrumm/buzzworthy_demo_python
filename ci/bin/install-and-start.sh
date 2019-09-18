@@ -18,7 +18,7 @@ echo "ECHO create venv, install dependencies"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 ls -lRa
 
-python3 -m virtualenv venv
+python3 -m venv venv
 ./venv/bin/activate
 python3 -m ensurepip --default-pip
 ./venv/bin/pip install --upgrade pip
