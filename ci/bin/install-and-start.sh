@@ -11,8 +11,8 @@ echo "=-=-=-=-=-=-=-=-=-="
 echo "ECHO python3 installed?"
 which python3
 python3 --version
-which pip3
-pip3 --version
+which pip
+pip --version
 
 echo "=-=-=-=-=-=-=-=-=-="
 echo "ECHO create venv, install dependencies"
