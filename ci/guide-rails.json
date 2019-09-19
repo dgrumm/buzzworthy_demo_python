@@ -109,15 +109,15 @@
 						"downloads": [
 							{
 								"link": "https://files.pythonhosted.org/packages/30/db/9e38760b32e3e7f40cce46dd5fb107b8c73840df38f0046d8e6514e675a1/pip-19.2.3-py2.py3-none-any.whl",
-								"name": "pip-19.2.3-py2.py3-none-any.whl"
+								"name": "python/pip-19.2.3-py2.py3-none-any.whl"
 							},
 							{
 								"link": "https://files.pythonhosted.org/packages/00/83/b4a77d044e78ad1a45610eb88f745be2fd2c6d658f9798a15e384b7d57c9/wheel-0.33.6-py2.py3-none-any.whl",
-								"name": "wheel-0.33.6-py2.py3-none-any.whl"
+								"name": "python/wheel-0.33.6-py2.py3-none-any.whl"
 							},
 							{
 								"link": "https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz",
-								"name": "Python-3.7.4.tar.xz"
+								"name": "python/Python-3.7.4.tar.xz"
 							}
 						],
 						"files": [],
