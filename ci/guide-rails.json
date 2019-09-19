@@ -32,7 +32,7 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install -r requirements.txt",
+						"command": "pip install --upgrade pip\npip install -r requirements.txt",
 						"properties": null
 					},
 					{
@@ -114,10 +114,14 @@
 							{
 								"link": "https://files.pythonhosted.org/packages/00/83/b4a77d044e78ad1a45610eb88f745be2fd2c6d658f9798a15e384b7d57c9/wheel-0.33.6-py2.py3-none-any.whl",
 								"name": "wheel-0.33.6-py2.py3-none-any.whl"
+							},
+							{
+								"link": "https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz",
+								"name": "Python-3.7.4.tar.xz"
 							}
 						],
 						"files": [],
-						"package_install_command": "set -e\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\npip install --upgrade python/wheel-*-py2.py3-none-any.whl\npip install --upgrade python/pip-*-py2.py3-none-any.whl",
+						"package_install_command": "set -e\nexport HOME=/var/vcap\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \\\n    --enable-unicode=ucs4\n\n  make install\npopd\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\npip install --upgrade python/wheel-*-py2.py3-none-any.whl\npip install --upgrade python/pip-*-py2.py3-none-any.whl",
 						"installed_path": ""
 					},
 					{
