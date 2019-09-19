@@ -104,13 +104,32 @@
 				},
 				"packages": [
 					{
-						"name": "((application.name))",
+						"name": "python-deps",
 						"dependencies": [],
+						"downloads": [
+							{
+								"link": "https://files.pythonhosted.org/packages/30/db/9e38760b32e3e7f40cce46dd5fb107b8c73840df38f0046d8e6514e675a1/pip-19.2.3-py2.py3-none-any.whl",
+								"name": "pip-19.2.3-py2.py3-none-any.whl"
+							},
+							{
+								"link": "https://files.pythonhosted.org/packages/00/83/b4a77d044e78ad1a45610eb88f745be2fd2c6d658f9798a15e384b7d57c9/wheel-0.33.6-py2.py3-none-any.whl",
+								"name": "wheel-0.33.6-py2.py3-none-any.whl"
+							}
+						],
+						"files": [],
+						"package_install_command": "set -e\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\npip install --upgrade python/wheel-*-py2.py3-none-any.whl\npip install --upgrade python/pip-*-py2.py3-none-any.whl",
+						"installed_path": ""
+					},
+					{
+						"name": "((application.name))",
+						"dependencies": [
+							"python-deps"
+						],
 						"downloads": [],
 						"files": [
-							"./*"
+							"buzz/**/*"
 						],
-						"package_install_command": "",
+						"package_install_command": "set -e -x\ncp -a buzz/* ${BOSH_INSTALL_TARGET}\ncd ${BOSH_INSTALL_TARGET}\nexport LD_LIBRARY_PATH=/var/vcap/packages/python-deps/lib:$LD_LIBRARY_PATH\nexport C_INCLUDE_PATH=/var/vcap/packages/python-deps/include:$C_INCLUDE_PATH\nexport PATH=/var/vcap/packages/python-deps/bin:$PATH\npython3 venv venv\n. venv/bin/activate\npip install -r requirements.txt\ndeactivate\n#sed -i 's/^\\(VIRTUAL_ENV\\)=.\\+$/\\1=\"\\/var\\/vcap\\/packages\\/buzz\\/venv\"/g' venv/bin/activate\n",
 						"installed_path": ""
 					}
 				],
