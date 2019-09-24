@@ -32,7 +32,7 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install -r requirements.txt",
+						"command": "pip install --upgrade pip\npip install -r requirements.txt",
 						"properties": null
 					},
 					{
@@ -104,13 +104,36 @@
 				},
 				"packages": [
 					{
-						"name": "((application.name))",
+						"name": "python-deps",
 						"dependencies": [],
+						"downloads": [
+							{
+								"link": "https://files.pythonhosted.org/packages/30/db/9e38760b32e3e7f40cce46dd5fb107b8c73840df38f0046d8e6514e675a1/pip-19.2.3-py2.py3-none-any.whl",
+								"name": "python/pip-19.2.3-py2.py3-none-any.whl"
+							},
+							{
+								"link": "https://files.pythonhosted.org/packages/00/83/b4a77d044e78ad1a45610eb88f745be2fd2c6d658f9798a15e384b7d57c9/wheel-0.33.6-py2.py3-none-any.whl",
+								"name": "python/wheel-0.33.6-py2.py3-none-any.whl"
+							},
+							{
+								"link": "https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz",
+								"name": "python/Python-3.7.4.tar.xz"
+							}
+						],
+						"files": [],
+						"package_install_command": "set -e\nexport HOME=/var/vcap\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \\\n    --enable-unicode=ucs4\n\n  make install\npopd\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\npip install --upgrade python/wheel-*-py2.py3-none-any.whl\npip install --upgrade python/pip-*-py2.py3-none-any.whl",
+						"installed_path": ""
+					},
+					{
+						"name": "((application.name))",
+						"dependencies": [
+							"python-deps"
+						],
 						"downloads": [],
 						"files": [
-							"./*"
+							"buzz/**/*"
 						],
-						"package_install_command": "",
+						"package_install_command": "set -e -x\ncp -a buzz/* ${BOSH_INSTALL_TARGET}\ncd ${BOSH_INSTALL_TARGET}\nexport LD_LIBRARY_PATH=/var/vcap/packages/python-deps/lib:$LD_LIBRARY_PATH\nexport C_INCLUDE_PATH=/var/vcap/packages/python-deps/include:$C_INCLUDE_PATH\nexport PATH=/var/vcap/packages/python-deps/bin:$PATH\npython3 venv venv\n. venv/bin/activate\npip install -r requirements.txt\ndeactivate\n#sed -i 's/^\\(VIRTUAL_ENV\\)=.\\+$/\\1=\"\\/var\\/vcap\\/packages\\/buzz\\/venv\"/g' venv/bin/activate\n",
 						"installed_path": ""
 					}
 				],
@@ -471,169 +494,5 @@
 	},
 	"organization": {
 		"orgname": "Tutorial"
-	},
-	"infrastructure": {
-		"stemcells": null,
-		"resources": [
-			{
-				"name": "pipeline",
-				"image": {
-					"name": "docker-registry.service.consul:443/pipeline-image-cli-test",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "email",
-				"image": {
-					"name": "docker-registry.service.consul:443/gr-email-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "deployment",
-				"image": {
-					"name": "docker-registry.service.consul:443/pipeline-image-cli-test",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "idgenerator",
-				"image": {
-					"name": "docker-registry.service.consul:443/gr-id-generator",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "emitter",
-				"image": {
-					"name": "docker-registry.service.consul:443/guide-rails-emitter",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "git-resource",
-				"image": {
-					"name": "docker-registry.service.consul:443/gr-git-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "build-breaker",
-				"image": {
-					"name": "docker-registry.service.consul:443/gr-build-breaker",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "s3",
-				"image": {
-					"name": "docker-registry.service.consul:443/concourse-s3-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "slack",
-				"image": {
-					"name": "docker-registry.service.consul:443/concourse-slack-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "sonar",
-				"image": {
-					"name": "docker-registry.service.consul:443/concourse-sonarqube-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "time",
-				"image": {
-					"name": "docker-registry.service.consul:443/gr-time-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "azure-blobstore",
-				"image": {
-					"name": "docker-registry.service.consul:443/concourse-azure-blobstore-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "gr-gcs-resource",
-				"image": {
-					"name": "docker-registry.service.consul:443/gr-gcs-resource",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			},
-			{
-				"name": "build",
-				"image": {
-					"name": "docker-registry.service.consul:443/pipeline-image-python-tools",
-					"version": "latest",
-					"location": "docker-registry.service.consul:443"
-				}
-			}
-		],
-		"notification_configurations": [
-			{
-				"name": "email",
-				"provider": "email",
-				"URL": "",
-				"properties": [
-					{
-						"name": "gr_email_host",
-						"value": "((gr_email_host))"
-					},
-					{
-						"name": "gr_email_port",
-						"value": "((gr_email_port))"
-					},
-					{
-						"name": "gr_email_from",
-						"value": "((gr_email_from))"
-					},
-					{
-						"name": "gr_email_username",
-						"value": "((gr_email_username))"
-					},
-					{
-						"name": "gr_email_password",
-						"value": "((gr_email_password))"
-					}
-				]
-			}
-		],
-		"vault": {
-			"address": ""
-		},
-		"concourse": {
-			"address": "",
-			"team": "",
-			"username": "",
-			"password": "",
-			"fly_target_path": ""
-		},
-		"mq": {
-			"host": "",
-			"user": "",
-			"password": ""
-		},
-		"bosh": {
-			"director": ""
-		}
 	}
 }
