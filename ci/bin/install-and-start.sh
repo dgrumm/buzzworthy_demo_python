@@ -14,6 +14,10 @@ echo "=-=-=-=-=-=-=-=-=-="
 #pip3 install -r requirements --user
 
 echo "=-=-=-=-=-=-=-=-=-="
+echo "ECHO install pip3 via apt-get with sudo"
+sudo apt-get install -y --no-install-recommends python3-pip
+
+echo "=-=-=-=-=-=-=-=-=-="
 echo "ECHO create venv, install dependencies"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 ls -lRa
