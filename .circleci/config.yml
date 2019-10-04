@@ -50,6 +50,7 @@ jobs:
 
       - store_test_results:
           path: test-results
+
   deploy:
     docker:
       -image: circleci/python:3:6:1-browsers
@@ -63,6 +64,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
+
       - run:
          name: start webapp
          command: |
@@ -73,7 +75,7 @@ workflows:
   version: 2
   myflow:
       jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+        - build
+        - deploy:
+            requires:
+              - build
