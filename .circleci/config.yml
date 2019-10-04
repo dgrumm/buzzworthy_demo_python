@@ -53,10 +53,10 @@ jobs:
 
     steps:
       - run:
-          name: echo commands
+          name: start webapp
           command: |
-            echo "python3 -m venv venv"
-            echo ". venv/bin/activate"
+            . venv/bin/activate
+            python webapp.py
 
 workflows:
   version: 2
