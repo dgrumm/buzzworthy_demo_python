@@ -43,7 +43,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python -m pytest -v --junit-xml test-results/test.xml --cov-report term --cov=buzz --cov-report xml:test-results/coverage.xml tests/
+            python -m pytest -v --junit-xml test-results/pytest/results.xml --cov-report term --cov=buzz --cov-report xml:test-results/pytest/coverage.xml tests/
 
       - store_artifacts:
           path: test-results
