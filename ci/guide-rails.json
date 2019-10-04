@@ -38,7 +38,7 @@
 					{
 						"name": "Run unit tests and generate reports",
 						"definition": "Run unit tests and generate reports",
-						"command": "python -m pytest -v --junit-xml test.xml --cov=. --cov-report xml:coverage.xml\n",
+						"command": "python -m pytest -v --junit-xml test-results/test.xml --cov-report term --cov=buzz --cov-report xml:test-results/coverage.xml tests/\n",
 						"properties": null
 					}
 				],
