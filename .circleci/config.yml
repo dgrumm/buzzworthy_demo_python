@@ -50,3 +50,7 @@ jobs:
 
       - store_test_results:
           path: test-results
+workflows:
+  myflow:
+      jobs:
+      - build
