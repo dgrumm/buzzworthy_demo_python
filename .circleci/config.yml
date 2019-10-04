@@ -72,8 +72,13 @@ jobs:
           name: start webapp
           command: |
             . venv/bin/activate
-            python -m webapp.py
-            
+            python webapp.py
+
+      - run:
+          name: ping the webapp
+          command: |
+            curl http://localhost:5000/
+
 workflows:
   version: 2
   build-deploy:
