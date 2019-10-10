@@ -93,6 +93,13 @@
 						"code_analysis": null
 					}
 				},
+				"properties": [
+					{
+						"name": "test. bar",
+						"description": "another prop, again with bogus value by type",
+						"value": false
+					}
+				],
 				"deployment_strategy": {
 					"canary_watch_time": "",
 					"update_watch_time": "",
@@ -139,15 +146,192 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
-				"persistent": true,
 				"run_after": [
 					"Build"
 				],
 				"job_steps": [
 					{
-						"name": "Echo",
-						"definition": "Echo",
-						"command": "ps -ef | grep python",
+						"name": "ECHO environment",
+						"definition": "ECHO environment",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"",
+						"properties": null
+					}
+				],
+				"exit_actions": {
+					"default": {
+						"fetch_logs": true,
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
+						"delete_instances": true
+					},
+					"on_success": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
+					},
+					"on_failure": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
+					},
+					"on_abort": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
+					}
+				},
+				"deployment_strategy": {
+					"canaries": 1,
+					"max_in_flight": 1,
+					"canary_watch_time": "5000-30000",
+					"update_watch_time": "5000-30000",
+					"serial": false
+				},
+				"application_init": {
+					"command": "",
+					"arguments": null
+				},
+				"process": {
+					"init": {
+						"command": "bin/install-and-start.sh"
+					}
+				},
+				"package_dependencies": [
+					"((application.name))"
+				],
+				"instance_tags": [
+					{
+						"name": "application.name",
+						"value": "((application.name))"
+					}
+				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "small",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.isolation))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.isolation))"
+						],
+						"deployment_strategy": {},
+						"dependencies": [
+							{
+								"name": "consul",
+								"release": "consul",
+								"provides": [
+									{
+										"name": "consul_servers.as",
+										"value": "consul_1"
+									}
+								],
+								"consumes": [
+									{
+										"name": "consul_servers.from",
+										"value": "consul_1"
+									}
+								],
+								"properties": [
+									{
+										"name": "consul.servicename",
+										"value": "((consul.servicename))"
+									},
+									{
+										"name": "consul.environment",
+										"value": "((consul.environment))"
+									},
+									{
+										"name": "consul.datacenter",
+										"value": "((consul.datacenter))"
+									},
+									{
+										"name": "consul.server",
+										"value": "false"
+									},
+									{
+										"name": "consul.joinservers",
+										"value": "((consul.joinservers))"
+									},
+									{
+										"name": "calculi.intermediate.cert",
+										"value": "grsecret:tls.cert"
+									},
+									{
+										"name": "calculi.intermediate.key",
+										"value": "grsecret:tls.key"
+									}
+								]
+							}
+						]
+					}
+				],
+				"post_deployment_actions": {
+					"instances": null,
+					"loadbalanced": false,
+					"loadbalancer": {
+						"TargetGroupName": "",
+						"TargetGroupPort": 0,
+						"TargetGroupProtocol": "",
+						"TargetType": "",
+						"VPCID": "",
+						"HealthCheckEnabled": false,
+						"HealthCheckPort": "",
+						"UnhealthyThresholdCount": 0
+					}
+				}
+			},
+			{
+				"name": "Integration",
+				"segment_type": "integration",
+				"run_after": [
+					"Build"
+				],
+				"job_steps": [
+					{
+						"name": "ECHO environment",
+						"definition": "ECHO environment",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"",
 						"properties": null
 					}
 				],
@@ -244,10 +428,192 @@
 						"vm_type": "default",
 						"os_type": "default",
 						"networks": [
-							"((deploy.target.network.isolation))"
+							"((deploy.target.network.integration))"
 						],
 						"availability_zones": [
-							"((deploy.target.zone.isolation))"
+							"((deploy.target.zone.integration))"
+						],
+						"deployment_strategy": {},
+						"dependencies": [
+							{
+								"name": "consul",
+								"release": "consul",
+								"provides": [
+									{
+										"name": "consul_servers.as",
+										"value": "consul_1"
+									}
+								],
+								"consumes": [
+									{
+										"name": "consul_servers.from",
+										"value": "consul_1"
+									}
+								],
+								"properties": [
+									{
+										"name": "consul.servicename",
+										"value": "((consul.servicename))"
+									},
+									{
+										"name": "consul.environment",
+										"value": "((consul.environment))"
+									},
+									{
+										"name": "consul.datacenter",
+										"value": "((consul.datacenter))"
+									},
+									{
+										"name": "consul.server",
+										"value": "false"
+									},
+									{
+										"name": "consul.joinservers",
+										"value": "((consul.joinservers))"
+									},
+									{
+										"name": "calculi.intermediate.cert",
+										"value": "grsecret:tls.cert"
+									},
+									{
+										"name": "calculi.intermediate.key",
+										"value": "grsecret:tls.key"
+									}
+								]
+							}
+						]
+					}
+				],
+				"post_deployment_actions": {
+					"instances": null,
+					"loadbalanced": false,
+					"loadbalancer": {
+						"TargetGroupName": "",
+						"TargetGroupPort": 0,
+						"TargetGroupProtocol": "",
+						"TargetType": "",
+						"VPCID": "",
+						"HealthCheckEnabled": false,
+						"HealthCheckPort": "",
+						"UnhealthyThresholdCount": 0
+					}
+				}
+			},
+			{
+				"name": "Release",
+				"segment_type": "release",
+				"run_after": [
+					"Integration",
+					"Isolation"
+				],
+				"job_steps": [
+					{
+						"name": "ECHO environment",
+						"definition": "ECHO environment",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"",
+						"properties": null
+					}
+				],
+				"exit_actions": {
+					"default": {
+						"fetch_logs": true,
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
+						"delete_instances": false
+					},
+					"on_success": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
+						"delete_instances": false
+					},
+					"on_failure": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
+						"delete_instances": false
+					},
+					"on_abort": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
+						"delete_instances": false
+					}
+				},
+				"deployment_strategy": {
+					"canaries": 1,
+					"max_in_flight": 1,
+					"canary_watch_time": "5000-30000",
+					"update_watch_time": "5000-30000",
+					"serial": false
+				},
+				"application_init": {
+					"command": "",
+					"arguments": null
+				},
+				"process": {
+					"init": {
+						"command": ""
+					}
+				},
+				"package_dependencies": [
+					"((application.name))"
+				],
+				"instance_tags": [
+					{
+						"name": "application.name",
+						"value": "((application.name))"
+					}
+				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "small",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.release))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.release))"
 						],
 						"deployment_strategy": {},
 						"dependencies": []
