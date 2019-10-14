@@ -38,7 +38,7 @@
 					{
 						"name": "Workspace",
 						"definition": "Default workspace",
-						"command": "echo 'My first build'",
+						"command": "echo 'My second build'",
 						"properties": null
 					}
 				],
