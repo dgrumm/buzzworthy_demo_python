@@ -38,7 +38,7 @@
 					{
 						"name": "Workspace",
 						"definition": "Default workspace",
-						"command": "echo 'Freeform build steps'",
+						"command": "echo 'My first build'",
 						"properties": null
 					}
 				],
@@ -66,18 +66,6 @@
 					"command": "",
 					"arguments": null
 				},
-				"packages": [
-					{
-						"name": "((application.name))",
-						"dependencies": [],
-						"downloads": [],
-						"files": [
-							"((application.name))*"
-						],
-						"package_install_command": "",
-						"installed_path": ""
-					}
-				],
 				"instance_tags": [
 					{
 						"name": "application.name",
