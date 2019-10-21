@@ -130,7 +130,7 @@
 							}
 						],
 						"files": [],
-						"package_install_command": "set -e\n\necho \"Extracting python...\"\necho \"Source: https://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz\"\ntar xzvf Python-2.7.6.tgz\n\necho \"Building python...\"\npushd Python-2.7.6\n  ./configure --prefix=$BOSH_INSTALL_TARGET\n  make\n  make install\npopd",
+						"package_install_command": "set -e\n\necho \"Extracting python...\"\necho \"Source: https://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz\"\ntar xzvf python-2-7-6/Python-2.7.6.tgz\n\necho \"Building python...\"\npushd Python-2.7.6\n  ./configure --prefix=$BOSH_INSTALL_TARGET\n  make\n  make install\npopd",
 						"installed_path": ""
 					}
 				],
