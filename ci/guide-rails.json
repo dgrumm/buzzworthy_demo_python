@@ -95,7 +95,7 @@
 				},
 				"properties": [
 					{
-						"name": "test. bar",
+						"name": "test.bar",
 						"description": "another prop, again with bogus value by type",
 						"value": false
 					}
