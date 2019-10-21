@@ -270,54 +270,7 @@
 							"((deploy.target.zone.isolation))"
 						],
 						"deployment_strategy": {},
-						"dependencies": [
-							{
-								"name": "consul",
-								"release": "consul",
-								"provides": [
-									{
-										"name": "consul_servers.as",
-										"value": "consul_1"
-									}
-								],
-								"consumes": [
-									{
-										"name": "consul_servers.from",
-										"value": "consul_1"
-									}
-								],
-								"properties": [
-									{
-										"name": "consul.servicename",
-										"value": "((consul.servicename))"
-									},
-									{
-										"name": "consul.environment",
-										"value": "((consul.environment))"
-									},
-									{
-										"name": "consul.datacenter",
-										"value": "((consul.datacenter))"
-									},
-									{
-										"name": "consul.server",
-										"value": "false"
-									},
-									{
-										"name": "consul.joinservers",
-										"value": "((consul.joinservers))"
-									},
-									{
-										"name": "calculi.intermediate.cert",
-										"value": "grsecret:tls.cert"
-									},
-									{
-										"name": "calculi.intermediate.key",
-										"value": "grsecret:tls.key"
-									}
-								]
-							}
-						]
+						"dependencies": []
 					}
 				],
 				"post_deployment_actions": {
@@ -448,54 +401,7 @@
 							"((deploy.target.zone.integration))"
 						],
 						"deployment_strategy": {},
-						"dependencies": [
-							{
-								"name": "consul",
-								"release": "consul",
-								"provides": [
-									{
-										"name": "consul_servers.as",
-										"value": "consul_1"
-									}
-								],
-								"consumes": [
-									{
-										"name": "consul_servers.from",
-										"value": "consul_1"
-									}
-								],
-								"properties": [
-									{
-										"name": "consul.servicename",
-										"value": "((consul.servicename))"
-									},
-									{
-										"name": "consul.environment",
-										"value": "((consul.environment))"
-									},
-									{
-										"name": "consul.datacenter",
-										"value": "((consul.datacenter))"
-									},
-									{
-										"name": "consul.server",
-										"value": "false"
-									},
-									{
-										"name": "consul.joinservers",
-										"value": "((consul.joinservers))"
-									},
-									{
-										"name": "calculi.intermediate.cert",
-										"value": "grsecret:tls.cert"
-									},
-									{
-										"name": "calculi.intermediate.key",
-										"value": "grsecret:tls.key"
-									}
-								]
-							}
-						]
+						"dependencies": []
 					}
 				],
 				"post_deployment_actions": {
