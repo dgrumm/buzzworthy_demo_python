@@ -14,15 +14,15 @@ echo "=-=-= START start.sh =-=-="
 #
 # ${PKG_BASE_DIR}/consul/bin/consul reload
 
-echo "List deployed packages"
+echo "List deployed packages under PKG_BASE_DIR"
 pushd ${PKG_BASE_DIR}
 ls -lRa
 popd
 
 echo "Exporting path for Python, assumes package was installed"
-export PATH=$PATH:${PKG_BASE_DIR}/python-2-7-6/python-2.7/bin/
+export PATH=$PATH:${PKG_BASE_DIR}/python-2-7-6/bin/
 echo "Path: $PATH"
-pushd ${PKG_BASE_DIR}/python-2-7-6/python-2.7/bin/
+pushd ${PKG_BASE_DIR}/python-2-7-6/bin/
 ls -lRA
 popd
 echo "Python version:"
