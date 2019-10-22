@@ -30,7 +30,9 @@ python -V
 
 echo "Starting buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+echo "What's in the app dir? "
 ls -lRa
+echo "Do I need to re-install deps?"
 python webapp.py
 
 echo "=-=-= END start.sh =-=-="
