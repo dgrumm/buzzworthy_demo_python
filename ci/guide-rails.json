@@ -32,7 +32,7 @@
 					{
 						"name": "Install dependencies",
 						"definition": "Install dependencies",
-						"command": "pip install --upgrade pip\npip install -r requirements.txt\n",
+						"command": "pip install --upgrade pip\npip install -r requirements.txt",
 						"properties": null
 					},
 					{
