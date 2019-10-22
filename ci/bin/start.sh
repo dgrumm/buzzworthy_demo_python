@@ -14,18 +14,19 @@ echo "=-=-= START start.sh =-=-="
 #
 # ${PKG_BASE_DIR}/consul/bin/consul reload
 
-echo "List deployed package at `${PKG_BASE_DIR}`"
+echo "List deployed packages"
 pushd ${PKG_BASE_DIR}
-ls -lRa
+tree
 popd
 
 echo "Exporting path for Python, assumes package was installed"
 export PATH=$PATH:${PKG_BASE_DIR}/python-2.7/bin/
-echo "Python version"
+echo "Path: $PATH"
+echo "Python version:"
 python -V
 
 echo "Starting buzzworthy webapp"
-pushd pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 python webapp.py
 
 echo "=-=-= END start.sh =-=-="
