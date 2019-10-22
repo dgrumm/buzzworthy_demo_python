@@ -20,7 +20,7 @@ tree
 popd
 
 echo "Exporting path for Python, assumes package was installed"
-export PATH=$PATH:${PKG_BASE_DIR}/python-2.7/bin/
+export PATH=$PATH:${PKG_BASE_DIR}/python-2-7-6/python-2.7/bin/
 echo "Path: $PATH"
 echo "Python version:"
 python -V
