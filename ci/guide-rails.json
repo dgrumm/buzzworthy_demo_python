@@ -602,8 +602,8 @@
 		"default_properties": [],
 		"deployment_files": [
 			{
-				"source_path": "ci/bin/install-and-start.sh",
-				"target_path": "bin/install-and-start.sh"
+				"source_path": "ci/bin/start.sh",
+				"target_path": "bin/start.sh"
 			}
 		],
 		"application_init": {
@@ -612,7 +612,7 @@
 		},
 		"process": {
 			"init": {
-				"command": "bin/install-and-start.sh"
+				"command": "bin/start.sh"
 			},
 			"name": "python"
 		},
