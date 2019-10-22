@@ -16,12 +16,15 @@ echo "=-=-= START start.sh =-=-="
 
 echo "List deployed packages"
 pushd ${PKG_BASE_DIR}
-tree
+ls -lRa
 popd
 
 echo "Exporting path for Python, assumes package was installed"
 export PATH=$PATH:${PKG_BASE_DIR}/python-2-7-6/python-2.7/bin/
 echo "Path: $PATH"
+pushd ${PKG_BASE_DIR}/python-2-7-6/python-2.7/bin/
+ls -lRA
+popd
 echo "Python version:"
 python -V
 
