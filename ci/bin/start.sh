@@ -28,11 +28,13 @@ popd
 echo "Python version:"
 python -V
 
-echo "Starting buzzworthy webapp"
+echo "Installing buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "What's in the app dir? "
 ls -lRa
-echo "Do I need to re-install deps?"
+echo "Install deps"
+pip install -r requirements.txt
+echo "Start webapp"
 python webapp.py
 
 echo "=-=-= END start.sh =-=-="
