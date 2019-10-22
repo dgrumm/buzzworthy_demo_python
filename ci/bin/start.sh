@@ -23,13 +23,14 @@ echo "Exporting path for Python, assumes package was installed"
 export PATH=$PATH:${PKG_BASE_DIR}/python-2-7-6/bin/
 echo "Path: $PATH"
 pushd ${PKG_BASE_DIR}/python-2-7-6/bin/
-ls -lRA
+ls -lRa
 popd
 echo "Python version:"
 python -V
 
 echo "Starting buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+ls -lRa
 python webapp.py
 
 echo "=-=-= END start.sh =-=-="
