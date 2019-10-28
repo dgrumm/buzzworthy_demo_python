@@ -14,6 +14,10 @@ echo "=-=-= START start.sh =-=-="
 #
 # ${PKG_BASE_DIR}/consul/bin/consul reload
 
+echo "Where am I?"
+pwd
+ls -lRa
+
 echo "List deployed packages under PKG_BASE_DIR"
 pushd ${PKG_BASE_DIR}
 ls -lRa
