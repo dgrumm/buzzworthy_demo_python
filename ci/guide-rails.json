@@ -112,9 +112,7 @@
 				"packages": [
 					{
 						"name": "((application.name))",
-						"dependencies": [
-							"python-2-7-6"
-						],
+						"dependencies": [],
 						"downloads": [],
 						"files": [
 							"buzz/**/*",
