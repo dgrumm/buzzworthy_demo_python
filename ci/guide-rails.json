@@ -132,7 +132,7 @@
 							}
 						],
 						"files": [],
-						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\necho \"Extracting python...\"\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\nwhich python\nwhich python3\nwhich pip\nwhich pip3\n\npip3 install -U pip\n",
+						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\necho \"Extracting python...\"\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\n",
 						"installed_path": ""
 					}
 				],
