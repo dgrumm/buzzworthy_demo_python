@@ -24,9 +24,9 @@ ls -lRa
 popd
 
 echo "Exporting path for Python, assumes package was installed"
-export PATH=$PATH:${PKG_BASE_DIR}/python-2-7-6/bin/
+export PATH=$PATH:${PKG_BASE_DIR}/python/bin/
 echo "Path: $PATH"
-pushd ${PKG_BASE_DIR}/python-2-7-6/bin/
+pushd ${PKG_BASE_DIR}/python/bin/
 ls -lRa
 popd
 echo "Python version:"
