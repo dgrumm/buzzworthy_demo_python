@@ -127,12 +127,12 @@
 						"dependencies": [],
 						"downloads": [
 							{
-								"link": "https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz",
-								"name": "Python-3.8.0.tar.xz"
+								"link": "https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz",
+								"name": "Python-3.7.4.tar.xz"
 							}
 						],
 						"files": [],
-						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\necho \"Extracting python...\"\necho \"Source: https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz\"\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\nwhich python\nwhich python3\nwhich pip\nwhich pip3\n\npip3 install -U pip\n",
+						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\necho \"Extracting python...\"\necho \"Source: https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz\"\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\nwhich python\nwhich python3\nwhich pip\nwhich pip3\n\npip3 install -U pip\n",
 						"installed_path": ""
 					}
 				],
