@@ -37,7 +37,7 @@ pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "What's in the app dir? "
 ls -lRa
 echo "Install deps"
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 echo "Start webapp"
 python webapp.py
 
