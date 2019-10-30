@@ -30,15 +30,15 @@ pushd ${PKG_BASE_DIR}/python/bin/
 ls -lRa
 popd
 echo "Python version:"
-python3 -V
+python -V
 
 echo "Installing buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "What's in the app dir? "
 ls -lRa
 echo "Install deps"
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 echo "Start webapp"
-python3 webapp.py
+python webapp.py
 
 echo "=-=-= END start.sh =-=-="
