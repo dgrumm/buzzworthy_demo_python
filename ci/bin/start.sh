@@ -24,13 +24,19 @@ ls -lRa
 popd
 
 echo "Exporting path for Python, assumes package was installed"
+echo "Path before: $PATH"
+echo "LD path before: $LD_LIBRARY_PATH"
 export PATH=$PATH:${PKG_BASE_DIR}/python/bin/
-echo "Path: $PATH"
+echo "Path after: $PATH"
 pushd ${PKG_BASE_DIR}/python/bin/
 ls -lRa
 popd
-echo "Python version:"
-python -V
+
+echo "Where is Python?"
+which python
+echo "Where is Pip?"
+which pip
+
 
 echo "Installing buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
