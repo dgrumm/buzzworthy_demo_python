@@ -121,7 +121,7 @@
 							"requirements.txt",
 							"webapp.py"
 						],
-						"package_install_command": "",
+						"package_install_command": "set -e\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\necho \"installing buzz dependencies\"\npip install -r requirements.txt",
 						"installed_path": ""
 					},
 					{
