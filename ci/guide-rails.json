@@ -129,8 +129,8 @@
 						"dependencies": [],
 						"downloads": [
 							{
-								"link": "https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tar.xz",
-								"name": "Python-2.7.13.tar.xz"
+								"link": "https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz",
+								"name": "Python-3.5.0.tar.xz"
 							}
 						],
 						"files": [],
