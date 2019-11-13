@@ -33,18 +33,20 @@ ls -lRa
 popd
 
 echo "Where is Python?"
-which python
+which python3
 echo "Where is Pip?"
-which pip
+which pip3
 
-
+# I feel like I shouldn't have to (re)install deps because the "install" done
+# as part of "python" package should have done this... but should have also
+# set the env variables... i thought!
 echo "Installing buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "What's in the app dir? "
 ls -lRa
 echo "Install deps"
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 echo "Start webapp"
-python webapp.py
+python3 webapp.py
 
 echo "=-=-= END start.sh =-=-="
