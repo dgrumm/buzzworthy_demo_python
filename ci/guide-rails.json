@@ -93,13 +93,6 @@
 						"code_analysis": null
 					}
 				},
-				"properties": [
-					{
-						"name": "test.bar",
-						"description": "another prop, again with bogus value by type",
-						"value": false
-					}
-				],
 				"deployment_strategy": {
 					"canary_watch_time": "",
 					"update_watch_time": "",
@@ -121,7 +114,7 @@
 							"requirements.txt",
 							"webapp.py"
 						],
-						"package_install_command": "set -e\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\necho \"installing buzz dependencies\"\npip install -r requirements.txt",
+						"package_install_command": "set -e\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\necho \"installing buzz dependencies\"\npip3 install -r requirements.txt",
 						"installed_path": ""
 					},
 					{
@@ -129,8 +122,8 @@
 						"dependencies": [],
 						"downloads": [
 							{
-								"link": "https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tar.xz",
-								"name": "Python-2.7.13.tar.xz"
+								"link": "https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz",
+								"name": "Python-3.5.0.tar.xz"
 							}
 						],
 						"files": [],
