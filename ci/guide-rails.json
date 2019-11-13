@@ -38,7 +38,7 @@
 					{
 						"name": "Run unit tests and generate reports",
 						"definition": "Run unit tests and generate reports",
-						"command": "python -m pytest -v --junit-xml test.xml  --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/\n",
+						"command": "echo \"unit testing\"\npython -m pytest -v --junit-xml test.xml  --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/\n",
 						"properties": null
 					}
 				],
@@ -411,7 +411,7 @@
 					}
 				],
 				"code_analysis": {
-					"publish": true,
+					"publish": false,
 					"properties": null
 				},
 				"delete_instances": true
@@ -450,7 +450,13 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [],
+		"default_properties": [
+			{
+				"name": "source_dirs",
+				"value": "",
+				"type": "string"
+			}
+		],
 		"deployment_files": [
 			{
 				"source_path": "ci/bin/install-and-start.sh",
@@ -465,6 +471,7 @@
 			"init": {
 				"command": "bin/install-and-start.sh"
 			},
+			"stop": {},
 			"name": "python"
 		},
 		"releases": []
