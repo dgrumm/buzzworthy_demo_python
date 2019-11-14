@@ -105,12 +105,29 @@
 				"packages": [
 					{
 						"name": "((application.name))",
-						"dependencies": [],
+						"dependencies": [
+							"python"
+						],
 						"downloads": [],
 						"files": [
-							"buzz/**/*"
+							"buzz/**/*",
+							"requirements.txt",
+							"webapp.py"
 						],
-						"package_install_command": "",
+						"package_install_command": "set -e\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\necho \"installing buzz dependencies\"\npip3 install -r requirements.txt",
+						"installed_path": ""
+					},
+					{
+						"name": "python",
+						"dependencies": [],
+						"downloads": [
+							{
+								"link": "https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz",
+								"name": "Python-3.5.0.tar.xz"
+							}
+						],
+						"files": [],
+						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\necho \"Extracting python...\"\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\n",
 						"installed_path": ""
 					}
 				],
@@ -139,15 +156,146 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
-				"persistent": true,
 				"run_after": [
 					"Build"
 				],
 				"job_steps": [
 					{
-						"name": "Echo",
-						"definition": "Echo",
-						"command": "ps -ef | grep python",
+						"name": "ECHO environment",
+						"definition": "ECHO environment",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"",
+						"properties": null
+					}
+				],
+				"exit_actions": {
+					"default": {
+						"fetch_logs": true,
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						},
+						"delete_instances": true
+					},
+					"on_success": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
+					},
+					"on_failure": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
+					},
+					"on_abort": {
+						"notifications": [
+							{
+								"type": "slack",
+								"send_notification": false,
+								"to": null,
+								"message": ""
+							}
+						],
+						"code_analysis": {
+							"publish": false,
+							"properties": null
+						}
+					}
+				},
+				"deployment_strategy": {
+					"canaries": 1,
+					"max_in_flight": 1,
+					"canary_watch_time": "5000-30000",
+					"update_watch_time": "5000-30000",
+					"serial": false
+				},
+				"application_init": {
+					"command": "",
+					"arguments": null
+				},
+				"process": {
+					"init": {
+						"command": "bin/start.sh"
+					}
+				},
+				"package_dependencies": [
+					"((application.name))",
+					"python"
+				],
+				"instance_tags": [
+					{
+						"name": "application.name",
+						"value": "((application.name))"
+					}
+				],
+				"instance_groups": [
+					{
+						"name": "((application.name))",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "small",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.isolation))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.isolation))"
+						],
+						"deployment_strategy": {},
+						"dependencies": []
+					}
+				],
+				"post_deployment_actions": {
+					"instances": null,
+					"loadbalanced": false,
+					"loadbalancer": {
+						"TargetGroupName": "",
+						"TargetGroupPort": 0,
+						"TargetGroupProtocol": "",
+						"TargetType": "",
+						"VPCID": "",
+						"HealthCheckEnabled": false,
+						"HealthCheckPort": "",
+						"UnhealthyThresholdCount": 0
+					}
+				}
+			},
+			{
+				"name": "Integration",
+				"segment_type": "integration",
+				"run_after": [
+					"Build"
+				],
+				"job_steps": [
+					{
+						"name": "ECHO environment",
+						"definition": "ECHO environment",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"",
 						"properties": null
 					}
 				],
@@ -228,7 +376,8 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))"
+					"((application.name))",
+					"python"
 				],
 				"instance_tags": [
 					{
@@ -244,10 +393,10 @@
 						"vm_type": "default",
 						"os_type": "default",
 						"networks": [
-							"((deploy.target.network.isolation))"
+							"((deploy.target.network.integration))"
 						],
 						"availability_zones": [
-							"((deploy.target.zone.isolation))"
+							"((deploy.target.zone.integration))"
 						],
 						"deployment_strategy": {},
 						"dependencies": []
@@ -266,9 +415,7 @@
 						"HealthCheckPort": "",
 						"UnhealthyThresholdCount": 0
 					}
-				},
-				"docker_options": {},
-				"source_code_available": true
+				}
 			},
 			{
 				"name": "Production",
@@ -459,8 +606,8 @@
 		],
 		"deployment_files": [
 			{
-				"source_path": "ci/bin/install-and-start.sh",
-				"target_path": "bin/install-and-start.sh"
+				"source_path": "ci/bin/start.sh",
+				"target_path": "bin/start.sh"
 			}
 		],
 		"application_init": {
@@ -469,7 +616,7 @@
 		},
 		"process": {
 			"init": {
-				"command": "bin/install-and-start.sh"
+				"command": "bin/start.sh"
 			},
 			"stop": {},
 			"name": "python"
