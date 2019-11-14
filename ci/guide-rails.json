@@ -422,7 +422,8 @@
 				"segment_type": "production",
 				"persistent": true,
 				"run_after": [
-					"Isolation"
+					"Isolation",
+					"Integration"
 				],
 				"exit_actions": {
 					"default": {
@@ -529,7 +530,6 @@
 						"dependencies": []
 					}
 				],
-				"gated": true,
 				"post_deployment_actions": {
 					"instances": null,
 					"loadbalanced": false,
@@ -597,13 +597,7 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [
-			{
-				"name": "source_dirs",
-				"value": "",
-				"type": "string"
-			}
-		],
+		"default_properties": [],
 		"deployment_files": [
 			{
 				"source_path": "ci/bin/start.sh",
