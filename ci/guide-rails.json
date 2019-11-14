@@ -240,7 +240,7 @@
 				},
 				"process": {
 					"init": {
-						"command": "bin/start.sh"
+						"command": ""
 					}
 				},
 				"package_dependencies": [
@@ -501,11 +501,12 @@
 				},
 				"process": {
 					"init": {
-						"command": "echo \"howdy from prod\""
+						"command": ""
 					}
 				},
 				"package_dependencies": [
-					"((application.name))"
+					"((application.name))",
+					"python"
 				],
 				"instance_tags": [
 					{
