@@ -598,13 +598,7 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [
-			{
-				"name": "foo",
-				"value": "justkidding",
-				"type": "string"
-			}
-		],
+		"default_properties": [],
 		"deployment_files": [
 			{
 				"source_path": "ci/bin/start.sh",
