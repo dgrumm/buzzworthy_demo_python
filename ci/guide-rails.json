@@ -402,6 +402,7 @@
 						"dependencies": []
 					}
 				],
+				"gated": true,
 				"post_deployment_actions": {
 					"instances": null,
 					"loadbalanced": false,
