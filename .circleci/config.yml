@@ -72,7 +72,7 @@ jobs:
           name: start webapp
           command: |
             . venv/bin/activate
-            python webapp.py
+            nohup python webapp.py &
 
       - run:
           name: ping the webapp
