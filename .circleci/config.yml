@@ -72,12 +72,16 @@ jobs:
           name: start webapp
           command: |
             . venv/bin/activate
-            nohup python webapp.py &
+	    nohup python -u webapp.py > output.log &
+            ps -ex | grep python
 
       - run:
           name: ping the webapp
           command: |
             curl http://localhost:5000/
+
+      - store_artifacts:
+          path: output.log
 
 workflows:
   version: 2
