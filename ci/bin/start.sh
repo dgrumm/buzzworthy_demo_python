@@ -23,11 +23,11 @@ pushd ${PKG_BASE_DIR}
 ls -lRa
 popd
 
-echo "Exporting PATH and LD_LIBRARY_PATH for Python, assumes package was installed"
-for dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done
-for dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done
-echo "Path after: $PATH"
-echo "LD path after: $LD_LIBRARY_PATH"
+# echo "Exporting PATH and LD_LIBRARY_PATH for Python, assumes package was installed"
+# for dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done
+# for dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done
+# echo "Path after: $PATH"
+# echo "LD path after: $LD_LIBRARY_PATH"
 
 # echo "Exporting path where python was installed {PKG_BASE_DIR}"
 # export PATH=$PATH:${PKG_BASE_DIR}/python/
@@ -42,21 +42,28 @@ echo "LD path after: $LD_LIBRARY_PATH"
 
 echo "Where is Python?"
 which python3
+
+echo "Installing pip3"
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+export PATH=$PATH:~/.local/bin
+
 echo "Where is Pip?"
-which pip3
+which pip
 
 
 # I feel like I shouldn't have to (re)install deps because the "install" done
 # as part of "python" package should have done this... but should have also
 # set the env variables... i thought!
-echo "Installing buzzworthy webapp"
-pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
-echo "Create Virutal Env"
-python3 venv venv
-source venv/bin/activate
+# echo "Installing buzzworthy webapp"
+# pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+# echo "Create Virutal Env"
+# python3 venv venv
+# source venv/bin/activate
 
+pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "Install deps"
-pip3 install -r requirements.txt
+pip install -r requirements.txt --user
 
 echo "Start webapp"
 python3 webapp.py
