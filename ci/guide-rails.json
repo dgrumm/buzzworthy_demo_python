@@ -156,6 +156,7 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
+				"persistent": true,
 				"run_after": [
 					"Build"
 				],
@@ -266,11 +267,52 @@
 						"availability_zones": [
 							"((deploy.target.zone.isolation))"
 						],
-						"deployment_strategy": {},
-						"dependencies": []
+						"deployment_strategy": {
+							"serial": true
+						},
+						"dependencies": [
+							{
+								"name": "bpm",
+								"release": "bpm",
+								"properties": []
+							},
+							{
+								"name": "route_registrar",
+								"release": "routing",
+								"properties": [
+									{
+										"name": "nats.machines",
+										"value": "[\"nats.service.consul\"]"
+									},
+									{
+										"name": "nats.password",
+										"value": "okojdi3n7exk38j7fnta"
+									},
+									{
+										"name": "nats.port",
+										"value": "4222"
+									},
+									{
+										"name": "nats.user",
+										"value": "nats"
+									},
+									{
+										"name": "route_registrar.routes",
+										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"uris\": [\"buzz.gr.calculi.io\"]}]"
+									},
+									{
+										"name": "route_registrar.routing_api.api_url",
+										"value": "https://routing-api.service.consul:3001"
+									},
+									{
+										"name": "route_registrar.routing_api.oauth_url",
+										"value": "https://uaa.service.consul:8443"
+									}
+								]
+							}
+						]
 					}
 				],
-				"gated": true,
 				"post_deployment_actions": {
 					"instances": null,
 					"loadbalanced": false,
@@ -619,7 +661,16 @@
 			"stop": {},
 			"name": "python"
 		},
-		"releases": []
+		"releases": [
+			{
+				"name": "bpm",
+				"version": "latest"
+			},
+			{
+				"name": "routing",
+				"version": "latest"
+			}
+		]
 	},
 	"organization": {
 		"orgname": "Tutorial"
