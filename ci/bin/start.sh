@@ -45,15 +45,19 @@ which python3
 echo "Where is Pip?"
 which pip3
 
+
 # I feel like I shouldn't have to (re)install deps because the "install" done
 # as part of "python" package should have done this... but should have also
 # set the env variables... i thought!
 echo "Installing buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
-echo "What's in the app dir? "
-ls -lRa
-# echo "Install deps"
-# pip3 install -r requirements.txt
+echo "Create Virutal Env"
+python3 venv venv
+source venv/bin/activate
+
+echo "Install deps"
+pip3 install -r requirements.txt
+
 echo "Start webapp"
 python3 webapp.py
 
