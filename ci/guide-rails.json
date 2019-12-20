@@ -73,29 +73,14 @@
 				"packages": [
 					{
 						"name": "((application.name))",
-						"dependencies": [
-							"python"
-						],
+						"dependencies": [],
 						"downloads": [],
 						"files": [
 							"buzz/**/*",
 							"requirements.txt",
 							"webapp.py"
 						],
-						"package_install_command": "set -e\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\necho \"installing buzz dependencies\"\npip3 install -r requirements.txt",
-						"installed_path": ""
-					},
-					{
-						"name": "python",
-						"dependencies": [],
-						"downloads": [
-							{
-								"link": "https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz",
-								"name": "Python-3.5.0.tar.xz"
-							}
-						],
-						"files": [],
-						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\necho \"Extracting python...\"\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\n",
+						"package_install_command": "",
 						"installed_path": ""
 					}
 				],
@@ -181,8 +166,7 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))",
-					"python"
+					"((application.name))"
 				],
 				"instance_tags": [
 					{
@@ -323,8 +307,7 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))",
-					"python"
+					"((application.name))"
 				],
 				"instance_tags": [
 					{
@@ -421,8 +404,7 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))",
-					"python"
+					"((application.name))"
 				],
 				"instance_tags": [
 					{
