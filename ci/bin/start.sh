@@ -23,16 +23,22 @@ pushd ${PKG_BASE_DIR}
 ls -lRa
 popd
 
-echo "Exporting path for Python, assumes package was installed"
-echo "Path before: $PATH"
-echo "LD path before: $LD_LIBRARY_PATH"
-echo "Copying the python package into the APPLICATION_RUN_DIR directory as the packages directory cannot be modified at runtime, so pip install is failing with permissions error"
-cp -Rf ${PKG_BASE_DIR}/python ${APPLICATION_RUN_DIR}/.
-export PATH=$PATH:${APPLICATION_RUN_DIR}/python/bin/
+echo "Exporting PATH and LD_LIBRARY_PATH for Python, assumes package was installed"
+for dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done
+for dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done
 echo "Path after: $PATH"
-pushd ${APPLICATION_RUN_DIR}/python/bin/
-ls -lRa
-popd
+echo "LD path after: $LD_LIBRARY_PATH"
+
+# echo "Exporting path where python was installed {PKG_BASE_DIR}"
+# export PATH=$PATH:${PKG_BASE_DIR}/python/
+# echo "Copying the python package into the APPLICATION_RUN_DIR directory as the packages directory cannot be modified at runtime, so pip install is failing with permissions error"
+# cp -Rf ${PKG_BASE_DIR}/python ${APPLICATION_RUN_DIR}/.
+# export PATH=$PATH:${APPLICATION_RUN_DIR}/python/bin/
+# echo "Path after: $PATH"
+
+# pushd ${APPLICATION_RUN_DIR}/python/bin/
+# ls -lRa
+# popd
 
 echo "Where is Python?"
 which python3
@@ -46,8 +52,8 @@ echo "Installing buzzworthy webapp"
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "What's in the app dir? "
 ls -lRa
-echo "Install deps"
-pip3 install -r requirements.txt
+# echo "Install deps"
+# pip3 install -r requirements.txt
 echo "Start webapp"
 python3 webapp.py
 
