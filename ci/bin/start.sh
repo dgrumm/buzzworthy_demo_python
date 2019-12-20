@@ -26,9 +26,11 @@ popd
 echo "Exporting path for Python, assumes package was installed"
 echo "Path before: $PATH"
 echo "LD path before: $LD_LIBRARY_PATH"
-export PATH=$PATH:${PKG_BASE_DIR}/python/bin/
+echo "Copying the python package into the APPLICATION_RUN_DIR directory as the packages directory cannot be modified at runtime, so pip install is failing with permissions error"
+cp -Rf ${PKG_BASE_DIR}/python ${APPLICATION_RUN_DIR}/.
+export PATH=$PATH:${APPLICATION_RUN_DIR}/python/bin/
 echo "Path after: $PATH"
-pushd ${PKG_BASE_DIR}/python/bin/
+pushd ${APPLICATION_RUN_DIR}/python/bin/
 ls -lRa
 popd
 
