@@ -298,7 +298,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"uris\": [\"buzz.gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.api_url",
