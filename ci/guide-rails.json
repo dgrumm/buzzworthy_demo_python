@@ -76,9 +76,7 @@
 						"dependencies": [],
 						"downloads": [],
 						"files": [
-							"buzz/**/*",
-							"requirements.txt",
-							"webapp.py"
+							"./"
 						],
 						"package_install_command": "",
 						"installed_path": ""
