@@ -65,7 +65,8 @@ pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
 echo "Install deps"
 pip install -r requirements.txt --user
 
+echo $PATH
 echo "Start webapp"
-python3 webapp.py
+python3 webapp.py --user
 
 echo "=-=-= END start.sh =-=-="
