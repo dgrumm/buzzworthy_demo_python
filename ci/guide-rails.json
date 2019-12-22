@@ -76,7 +76,7 @@
 						"dependencies": [],
 						"downloads": [],
 						"files": [
-							".buzz/",
+							"buzz/",
 							"requirements.txt",
 							"webapp.py"
 						],
