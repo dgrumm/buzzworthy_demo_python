@@ -45,14 +45,6 @@
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": true,
 							"properties": null
@@ -60,36 +52,12 @@
 						"delete_instances": true
 					},
 					"on_success": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": null
 					},
 					"on_failure": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": null
 					},
 					"on_abort": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": null
 					}
 				},
@@ -105,29 +73,14 @@
 				"packages": [
 					{
 						"name": "((application.name))",
-						"dependencies": [
-							"python"
-						],
+						"dependencies": [],
 						"downloads": [],
 						"files": [
-							"buzz/**/*",
+							"buzz/",
 							"requirements.txt",
 							"webapp.py"
 						],
-						"package_install_command": "set -e\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\necho \"installing buzz dependencies\"\npip3 install -r requirements.txt",
-						"installed_path": ""
-					},
-					{
-						"name": "python",
-						"dependencies": [],
-						"downloads": [
-							{
-								"link": "https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz",
-								"name": "Python-3.5.0.tar.xz"
-							}
-						],
-						"files": [],
-						"package_install_command": "set -e # exit immediately if a simple command exits with a non-zero status\nset -u # report the usage of uninitialized variables\n\n\necho \"Detect number of CPUs so make jobs can be parallelized\"\nCPUS=$(grep -c ^processor /proc/cpuinfo)\n\nexport HOME=/var/vcap\n\necho \"Extracting python...\"\n\ntar xf python/Python-*.tar.xz\npushd Python*\n  ./configure \\\n    --prefix=${BOSH_INSTALL_TARGET} \\\n    --with-ensurepip \\\n    --enable-shared \\\n    --enable-ipv6 \n\n  make -j $CPUS\n  make install\npopd\n\nfor dir in $(ls -d /var/vcap/packages/*/bin); do export PATH=$dir:$PATH; done\nfor dir in $(ls -d /var/vcap/packages/*/lib); do export LD_LIBRARY_PATH=$dir:${LD_LIBRARY_PATH:-}; done\n\n",
+						"package_install_command": "",
 						"installed_path": ""
 					}
 				],
@@ -171,14 +124,6 @@
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -186,42 +131,18 @@
 						"delete_instances": true
 					},
 					"on_success": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
 						}
 					},
 					"on_failure": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
 						}
 					},
 					"on_abort": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -231,8 +152,8 @@
 				"deployment_strategy": {
 					"canaries": 1,
 					"max_in_flight": 1,
-					"canary_watch_time": "5000-30000",
-					"update_watch_time": "5000-30000",
+					"canary_watch_time": "30000-120000",
+					"update_watch_time": "30000-120000",
 					"serial": false
 				},
 				"application_init": {
@@ -245,8 +166,7 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))",
-					"python"
+					"((application.name))"
 				],
 				"instance_tags": [
 					{
@@ -345,14 +265,6 @@
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -360,42 +272,18 @@
 						"delete_instances": true
 					},
 					"on_success": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
 						}
 					},
 					"on_failure": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
 						}
 					},
 					"on_abort": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -405,8 +293,8 @@
 				"deployment_strategy": {
 					"canaries": 1,
 					"max_in_flight": 1,
-					"canary_watch_time": "5000-30000",
-					"update_watch_time": "5000-30000",
+					"canary_watch_time": "30000-120000",
+					"update_watch_time": "30000-120000",
 					"serial": false
 				},
 				"application_init": {
@@ -419,8 +307,7 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))",
-					"python"
+					"((application.name))"
 				],
 				"instance_tags": [
 					{
@@ -472,14 +359,6 @@
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -487,14 +366,6 @@
 						"delete_instances": false
 					},
 					"on_success": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -502,14 +373,6 @@
 						"delete_instances": false
 					},
 					"on_failure": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -517,14 +380,6 @@
 						"delete_instances": false
 					},
 					"on_abort": {
-						"notifications": [
-							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
-							}
-						],
 						"code_analysis": {
 							"publish": false,
 							"properties": null
@@ -549,8 +404,7 @@
 					}
 				},
 				"package_dependencies": [
-					"((application.name))",
-					"python"
+					"((application.name))"
 				],
 				"instance_tags": [
 					{
@@ -595,14 +449,6 @@
 		"exit_actions": {
 			"default": {
 				"fetch_logs": true,
-				"notifications": [
-					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
-					}
-				],
 				"code_analysis": {
 					"publish": false,
 					"properties": null
@@ -610,36 +456,12 @@
 				"delete_instances": true
 			},
 			"on_success": {
-				"notifications": [
-					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
-					}
-				],
 				"code_analysis": null
 			},
 			"on_failure": {
-				"notifications": [
-					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
-					}
-				],
 				"code_analysis": null
 			},
 			"on_abort": {
-				"notifications": [
-					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
-					}
-				],
 				"code_analysis": null
 			}
 		},
