@@ -62,6 +62,9 @@ which pip
 # source venv/bin/activate
 
 pushd ${PKG_BASE_DIR}/${APPLICATION_NAME}
+echo "Directory listing"
+ls -lRa
+
 echo "Install deps"
 pip install -r requirements.txt --user
 
