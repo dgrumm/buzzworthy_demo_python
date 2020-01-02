@@ -202,7 +202,7 @@
 								"properties": [
 									{
 										"name": "nats.machines",
-										"value": "[\"nats.service.consul\"]"
+										"value": "[\"nats-minimal.service.consul\"]"
 									},
 									{
 										"name": "nats.password",
@@ -221,12 +221,8 @@
 										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
 									},
 									{
-										"name": "route_registrar.routing_api.api_url",
-										"value": "https://routing-api.service.consul:3001"
-									},
-									{
 										"name": "route_registrar.routing_api.oauth_url",
-										"value": "https://uaa.service.consul:8443"
+										"value": "https://uaa-minimal.service.consul:8443"
 									}
 								]
 							}
