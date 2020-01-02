@@ -38,7 +38,7 @@
 					{
 						"name": "Run unit tests and generate reports",
 						"definition": "Run unit tests and generate reports",
-						"command": "echo \"unit testing\"\npython -m pytest -v --junit-xml test.xml  --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/\n",
+						"command": "echo \"unit testing\"\npython -m pytest -v --junit-xml test.xml  --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/\nls",
 						"properties": null
 					}
 				],
