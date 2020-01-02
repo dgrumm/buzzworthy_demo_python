@@ -117,7 +117,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"\n\nset -e\ncurl  http://buzz.gr.calculi.io\nset +e",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"\n\nset -e\ncurl  http://buzz-isolation.gr.calculi.io\nset +e",
 						"properties": null
 					}
 				],
@@ -218,7 +218,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz.gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.api_url",
