@@ -259,7 +259,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"\n\ncat /var/vcap/jobs/buzzworthy_python-Integration-test/bin/run\n\nset -e\nSTATUS=$(curl --silent --output /dev/stderr --write-out \"%{http_code}\" http://buzz.gr.calculi.io)\nif [ \"$STATUS\" != 200 ]\nthen \n  echo \"Buzz application is not running. Exiting!\"\n  exit1\nelse\n  echo \"Buzz application is running at http://buzz.gr.calculi.io\"\nfi\nset +e",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"\n\ncat /var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh\n\n/var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh",
 						"properties": null
 					}
 				],
@@ -476,7 +476,6 @@
 				"source_path": "ci/bin/integration-test.sh",
 				"target_path": "bin/integration-test.sh"
 			}
-
 		],
 		"application_init": {
 			"command": "",
