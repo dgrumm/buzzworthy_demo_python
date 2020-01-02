@@ -258,7 +258,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"\n\nset -e\ncurl  http://buzz.gr.calculi.io\nset +e",
 						"properties": null
 					}
 				],
