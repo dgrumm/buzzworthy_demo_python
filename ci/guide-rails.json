@@ -117,7 +117,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"\n\nset -e\ncurl  http://buzz-isolation.gr.calculi.io\nset +e",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"\n\n/var/vcap/jobs/buzzworthy_python-Integration-test/bin/isolation-test.sh",
 						"properties": null
 					}
 				],
@@ -471,6 +471,10 @@
 			{
 				"source_path": "ci/bin/start.sh",
 				"target_path": "bin/start.sh"
+			},
+			{
+				"source_path": "ci/bin/isolation-test.sh",
+				"target_path": "bin/isolation-test.sh"
 			},
 			{
 				"source_path": "ci/bin/integration-test.sh",

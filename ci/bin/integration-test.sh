@@ -6,6 +6,6 @@ if [ "$STATUS" != 200 ]; then
   echo "Buzz application is not running. Exiting!"
   exit 1
 else
-  echo "Buzz application is running at http://buzz.gr.calculi.io"
+  echo "Buzz application is running at http://buzz-integration.gr.calculi.io"
 fi
 set +e
