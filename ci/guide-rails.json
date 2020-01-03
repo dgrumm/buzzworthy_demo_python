@@ -109,7 +109,6 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
-				"persistent": true,
 				"run_after": [
 					"Build"
 				],
@@ -247,7 +246,6 @@
 			{
 				"name": "Integration",
 				"segment_type": "integration",
-				"persistent": true,
 				"run_after": [
 					"Build"
 				],
@@ -255,7 +253,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"\n\ncat /var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh\n\n/var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh",
+						"command": "export PYTHONPATH=/home/vcap/.local/lib/python3.5/site-packages/\n\npython3 /var/vcap/jobs/buzzworthy_python-Integration/bin/selenium-test.py",
 						"properties": null
 					}
 				],
@@ -287,6 +285,24 @@
 						}
 					}
 				},
+				"properties": [
+					{
+						"name": "buzz.app_url",
+						"value": "http://buzz-integration-((application.shortsha)).gr.calculi.io"
+					},
+					{
+						"name": "buzz.selenium_url",
+						"value": "http://buzz-selenium-((application.shortsha)).gr.calculi.io/wd/hub"
+					},
+					{
+						"name": "buzz.class",
+						"value": "buzz"
+					},
+					{
+						"name": "buzz.title",
+						"value": "Calculi Buzz Generator"
+					}
+				],
 				"deployment_files": [
 					{
 						"source_path": "tests/integration/selenium-test.py",
@@ -360,7 +376,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))-selenium\", \"port\": 4444, \"registration_interval\": \"10s\", \"uris\": [\"buzz-selenium.gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))-((application.shortsha))-selenium\", \"port\": 4444, \"registration_interval\": \"10s\", \"uris\": [\"buzz-selenium-((application.shortsha)).gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
@@ -416,7 +432,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))-integration\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-integration.gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))-((application.shortsha))-integration\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-integration-((application.shortsha)).gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
