@@ -255,7 +255,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"\n\ncat /var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh\n\n/var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh",
+						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"\n\ncat /var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh\n\n/var/vcap/jobs/buzzworthy_python-Integration-test/bin/integration-test.sh\n\npython3 /var/vcap/jobs/buzzworthy_python-Integration/bin/selenium-test.py",
 						"properties": null
 					}
 				],
@@ -287,6 +287,24 @@
 						}
 					}
 				},
+				"properties": [
+					{
+						"name": "buzz.app_url",
+						"value": "http://buzz-integration.gr.calculi.io"
+					},
+					{
+						"name": "buzz.selenium_url",
+						"value": "http://buzz-selenium.gr.calculi.io/wd/hub"
+					},
+					{
+						"name": "buzz.class",
+						"value": "buzz"
+					},
+					{
+						"name": "buzz.title",
+						"value": "Calculi Buzz Generator"
+					}
+				],
 				"deployment_files": [
 					{
 						"source_path": "tests/integration/selenium-test.py",
