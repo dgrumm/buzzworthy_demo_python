@@ -346,7 +346,7 @@
 									},
 									{
 										"name": "nats.port",
-										"value": "4444"
+										"value": "4222"
 									},
 									{
 										"name": "nats.user",
@@ -354,7 +354,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))-selenium\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-selenium.gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))-selenium\", \"port\": 4444, \"registration_interval\": \"10s\", \"uris\": [\"buzz-selenium.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
