@@ -314,6 +314,27 @@
 				],
 				"instance_groups": [
 					{
+						"name": "((application.name))-selenium",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "default",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.integration))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.integration))"
+						],
+						"deployment_strategy": {},
+						"dependencies": [
+							{
+								"name": "selenium",
+								"release": "selenium",
+								"properties": []
+							}
+						]
+					},
+					{
 						"name": "((application.name))",
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
@@ -326,7 +347,43 @@
 							"((deploy.target.zone.integration))"
 						],
 						"deployment_strategy": {},
-						"dependencies": []
+						"dependencies": [
+							{
+								"name": "bpm",
+								"release": "bpm",
+								"properties": []
+							},
+							{
+								"name": "route_registrar",
+								"release": "routing",
+								"properties": [
+									{
+										"name": "nats.machines",
+										"value": "[\"nats-minimal.service.consul\"]"
+									},
+									{
+										"name": "nats.password",
+										"value": "okojdi3n7exk38j7fnta"
+									},
+									{
+										"name": "nats.port",
+										"value": "4222"
+									},
+									{
+										"name": "nats.user",
+										"value": "nats"
+									},
+									{
+										"name": "route_registrar.routes",
+										"value": "[{\"name\": \"((application.name))-integration\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-integration.gr.calculi.io\"]}]"
+									},
+									{
+										"name": "route_registrar.routing_api.oauth_url",
+										"value": "https://uaa-minimal.service.consul:8443"
+									}
+								]
+							}
+						]
 					}
 				],
 				"gated": true,
@@ -495,6 +552,10 @@
 			},
 			{
 				"name": "routing",
+				"version": "latest"
+			},
+			{
+				"name": "selenium",
 				"version": "latest"
 			}
 		]
