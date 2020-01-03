@@ -287,6 +287,12 @@
 						}
 					}
 				},
+				"deployment_files": [
+					{
+						"source_path": "tests/integration/selenium-test.py",
+						"target_path": "bin/selenium-test.py"
+					}
+				],
 				"deployment_strategy": {
 					"canaries": 1,
 					"max_in_flight": 1,
