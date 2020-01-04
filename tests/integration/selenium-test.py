@@ -13,18 +13,19 @@ driver = webdriver.Remote(
 
 print(driver)
 
-try:
-    driver.implicitly_wait(30)
-    driver.set_window_position(0, 0)
-    driver.set_window_size(1920, 1080)
-    driver.get("<%= p('buzz.app_url') %>")
+driver.implicitly_wait(30)
+driver.set_window_position(0, 0)
+driver.set_window_size(1920, 1080)
+driver.get("<%= p('buzz.app_url') %>")
+
+def test_title()
     assert "<%= p('buzz.title') %>" in driver.title
+
+def test_class()
     content = driver.find_element_by_class_name('<%= p('buzz.class') %>')
     para = content.find_element_by_class_name('<%= p('buzz.class') %>')
     assert para.text != ""
 
-finally:
-    driver.quit()
 
 class BasicTest:
     pass
@@ -34,3 +35,5 @@ class Test_URL(BasicTest):
             print(self.driver.title)
  
             sleep(5)
+
+driver.quit()
