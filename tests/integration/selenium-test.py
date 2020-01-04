@@ -25,3 +25,12 @@ try:
 
 finally:
     driver.quit()
+
+class BasicTest:
+    pass
+class Test_URL(BasicTest):
+        def test_open_url(self):
+            self.driver.get("<%= p('buzz.app_url') %>")
+            print(self.driver.title)
+ 
+            sleep(5)
