@@ -19,3 +19,5 @@ wcwidth==0.1.7
 Werkzeug==0.15.6
 zipp==0.6.0
 selenium==3.14.1
+pytest
+pytest_html
