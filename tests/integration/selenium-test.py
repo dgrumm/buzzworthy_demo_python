@@ -36,4 +36,6 @@ class Test_URL(BasicTest):
  
             sleep(5)
 
+test_title
+
 driver.quit()
