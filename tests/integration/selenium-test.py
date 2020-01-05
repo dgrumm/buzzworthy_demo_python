@@ -18,10 +18,10 @@ driver.set_window_position(0, 0)
 driver.set_window_size(1920, 1080)
 driver.get("<%= p('buzz.app_url') %>")
 
-def test_title()
+def test_title():
     assert "<%= p('buzz.title') %>" in driver.title
 
-def test_class()
+def test_class():
     content = driver.find_element_by_class_name('<%= p('buzz.class') %>')
     para = content.find_element_by_class_name('<%= p('buzz.class') %>')
     assert para.text != ""
@@ -36,6 +36,5 @@ class Test_URL(BasicTest):
  
             sleep(5)
 
-test_title
 
 driver.quit()
