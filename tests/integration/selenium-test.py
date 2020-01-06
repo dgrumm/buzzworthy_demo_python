@@ -18,6 +18,7 @@ driver.set_window_position(0, 0)
 driver.set_window_size(1920, 1080)
 driver.get("<%= p('buzz.app_url') %>")
 
+@pytest.fixture
 def test_title(driver):
     assert "<%= p('buzz.title') %>" in driver.title
 
