@@ -28,4 +28,4 @@ def test_class():
     para = content.find_element_by_class_name('<%= p('buzz.class') %>')
     assert para.text != ""
 
-driver.quit()
+#driver.quit()
