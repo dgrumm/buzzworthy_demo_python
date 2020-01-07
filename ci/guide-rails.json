@@ -251,9 +251,9 @@
 				],
 				"job_steps": [
 					{
-						"name": "ECHO environment",
-						"definition": "ECHO environment",
-						"command": "export PATH=$PATH:/home/vcap/.local/bin\nexport PYTHONPATH=/home/vcap/.local/lib/python3.5/site-packages/\n\npython3 /var/vcap/jobs/buzzworthy_python-Integration/bin/selenium-test.py\n\npytest /var/vcap/jobs/buzzworthy_python-Integration/bin/selenium-test.py",
+						"name": "Integration test",
+						"definition": "Integration test",
+						"command": "export PATH=$PATH:/home/vcap/.local/bin\nexport PYTHONPATH=/home/vcap/.local/lib/python3.5/site-packages/\n\npytest --junit-xml=${TEST_REPORTS_DIR}/test.xml --cov-report=xml:${TEST_REPORTS_DIR}/coverage.xml --cov=${PKG_BASE_DIR}/buzzworthy_python/ ${APPLICATION_JOB_DIR}/bin/selenium-test.py",
 						"properties": null
 					}
 				],
