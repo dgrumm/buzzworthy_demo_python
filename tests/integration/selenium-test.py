@@ -20,6 +20,7 @@ driver.get("<%= p('buzz.app_url') %>")
 
 #@pytest.fixture
 def test_title():
+    print(driver)
     assert "<%= p('buzz.title') %>" in driver.title
 
 def test_class():
