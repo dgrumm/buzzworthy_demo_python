@@ -38,7 +38,7 @@
 					{
 						"name": "Run unit tests and generate reports",
 						"definition": "Run unit tests and generate reports",
-						"command": "echo \"unit testing\"\npython -m pytest -v --junit-xml test.xml  --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/\n",
+						"command": "echo \"unit testing\"\npython -m pytest -v --junit-xml test.xml  --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/\nls",
 						"properties": null
 					}
 				],
@@ -109,7 +109,6 @@
 			{
 				"name": "Isolation",
 				"segment_type": "isolation",
-				"persistent": true,
 				"run_after": [
 					"Build"
 				],
@@ -117,7 +116,7 @@
 					{
 						"name": "ECHO environment",
 						"definition": "ECHO environment",
-						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"\n\nset -e\ncurl  http://buzz.gr.calculi.io\nset +e",
+						"command": "echo \"ECHO environment\"\nprintenv | sort\n\necho \"this dir contents\"\npwd\nls -la\n\necho \"packages\"\nls -la packages/buzzworthy_python\n\necho \"$PKG_BASE_DIR\"\nls -la ${PKG_BASE_DIR}\n\necho \"APPLICATION_RUN_DIR\"\nls -la ${APPLICATION_RUN_DIR}\n\n\necho \"APPLICATION_JOB_DIR\"\nls -la ${APPLICATION_JOB_DIR}\n\necho \"TEST_RUN_DIR\"\nls -la ${TEST_RUN_DIR}\n\necho \"TEST_JOB_DIR\"\nls -la ${TEST_JOB_DIR}\necho \"ECHO environment complete\"\n\n/var/vcap/jobs/buzzworthy_python-Isolation-test/bin/isolation-test.sh",
 						"properties": null
 					}
 				],
@@ -202,7 +201,7 @@
 								"properties": [
 									{
 										"name": "nats.machines",
-										"value": "[\"nats.service.consul\"]"
+										"value": "[\"nats-minimal.service.consul\"]"
 									},
 									{
 										"name": "nats.password",
@@ -218,15 +217,11 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz.gr.calculi.io\"]}]"
-									},
-									{
-										"name": "route_registrar.routing_api.api_url",
-										"value": "https://routing-api.service.consul:3001"
+										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
-										"value": "https://uaa.service.consul:8443"
+										"value": "https://uaa-minimal.service.consul:8443"
 									}
 								]
 							}
@@ -256,9 +251,9 @@
 				],
 				"job_steps": [
 					{
-						"name": "ECHO environment",
-						"definition": "ECHO environment",
-						"command": "echo \"enviro info...\"\nprintenv | sort\npwd\necho \"enviro info complete\"",
+						"name": "Integration test",
+						"definition": "Integration test",
+						"command": "export PATH=$PATH:/home/vcap/.local/bin\nexport PYTHONPATH=/home/vcap/.local/lib/python3.5/site-packages/\n\npytest --junit-xml=${TEST_REPORTS_DIR}/test.xml --cov-report=xml:${TEST_REPORTS_DIR}/coverage.xml --cov=${PKG_BASE_DIR}/buzzworthy_python/ ${APPLICATION_JOB_DIR}/bin/selenium-test.py",
 						"properties": null
 					}
 				],
@@ -290,6 +285,30 @@
 						}
 					}
 				},
+				"properties": [
+					{
+						"name": "buzz.app_url",
+						"value": "http://buzz-integration-((application.shortsha)).gr.calculi.io"
+					},
+					{
+						"name": "buzz.selenium_url",
+						"value": "http://buzz-selenium-((application.shortsha)).gr.calculi.io/wd/hub"
+					},
+					{
+						"name": "buzz.class",
+						"value": "buzz"
+					},
+					{
+						"name": "buzz.title",
+						"value": "Calculi Buzz Generator"
+					}
+				],
+				"deployment_files": [
+					{
+						"source_path": "tests/integration/selenium-test.py",
+						"target_path": "bin/selenium-test.py"
+					}
+				],
 				"deployment_strategy": {
 					"canaries": 1,
 					"max_in_flight": 1,
@@ -317,6 +336,62 @@
 				],
 				"instance_groups": [
 					{
+						"name": "((application.name))-selenium",
+						"number_of_instances": 1,
+						"persistent_disk_type": "",
+						"vm_type": "default",
+						"os_type": "default",
+						"networks": [
+							"((deploy.target.network.integration))"
+						],
+						"availability_zones": [
+							"((deploy.target.zone.integration))"
+						],
+						"deployment_strategy": {},
+						"dependencies": [
+							{
+								"name": "bpm",
+								"release": "bpm",
+								"properties": []
+							},
+							{
+								"name": "route_registrar",
+								"release": "routing",
+								"properties": [
+									{
+										"name": "nats.machines",
+										"value": "[\"nats-minimal.service.consul\"]"
+									},
+									{
+										"name": "nats.password",
+										"value": "okojdi3n7exk38j7fnta"
+									},
+									{
+										"name": "nats.port",
+										"value": "4222"
+									},
+									{
+										"name": "nats.user",
+										"value": "nats"
+									},
+									{
+										"name": "route_registrar.routes",
+										"value": "[{\"name\": \"((application.name))-((application.shortsha))-selenium\", \"port\": 4444, \"registration_interval\": \"10s\", \"uris\": [\"buzz-selenium-((application.shortsha)).gr.calculi.io\"]}]"
+									},
+									{
+										"name": "route_registrar.routing_api.oauth_url",
+										"value": "https://uaa-minimal.service.consul:8443"
+									}
+								]
+							},
+							{
+								"name": "selenium",
+								"release": "selenium",
+								"properties": []
+							}
+						]
+					},
+					{
 						"name": "((application.name))",
 						"number_of_instances": 1,
 						"persistent_disk_type": "",
@@ -329,7 +404,43 @@
 							"((deploy.target.zone.integration))"
 						],
 						"deployment_strategy": {},
-						"dependencies": []
+						"dependencies": [
+							{
+								"name": "bpm",
+								"release": "bpm",
+								"properties": []
+							},
+							{
+								"name": "route_registrar",
+								"release": "routing",
+								"properties": [
+									{
+										"name": "nats.machines",
+										"value": "[\"nats-minimal.service.consul\"]"
+									},
+									{
+										"name": "nats.password",
+										"value": "okojdi3n7exk38j7fnta"
+									},
+									{
+										"name": "nats.port",
+										"value": "4222"
+									},
+									{
+										"name": "nats.user",
+										"value": "nats"
+									},
+									{
+										"name": "route_registrar.routes",
+										"value": "[{\"name\": \"((application.name))-((application.shortsha))-integration\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-integration-((application.shortsha)).gr.calculi.io\"]}]"
+									},
+									{
+										"name": "route_registrar.routing_api.oauth_url",
+										"value": "https://uaa-minimal.service.consul:8443"
+									}
+								]
+							}
+						]
 					}
 				],
 				"gated": true,
@@ -470,6 +581,10 @@
 			{
 				"source_path": "ci/bin/start.sh",
 				"target_path": "bin/start.sh"
+			},
+			{
+				"source_path": "ci/bin/isolation-test.sh",
+				"target_path": "bin/isolation-test.sh"
 			}
 		],
 		"application_init": {
@@ -490,6 +605,10 @@
 			},
 			{
 				"name": "routing",
+				"version": "latest"
+			},
+			{
+				"name": "selenium",
 				"version": "latest"
 			}
 		]
