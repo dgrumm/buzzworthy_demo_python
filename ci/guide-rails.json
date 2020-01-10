@@ -217,7 +217,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))-isolation”, \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
@@ -433,7 +433,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))-((application.shortsha))-integration\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-integration-((application.shortsha)).gr.calculi.io\"]}]"
+										"value": "[{\"name\": \"((application.name))-integration\", \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-integration.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
