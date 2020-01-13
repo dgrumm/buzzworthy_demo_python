@@ -223,7 +223,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))-isolation”, \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
+										"value": "[{\"name\": “buzz-isolation”, \"port\": 5000, \"registration_interval\": \"10s\", \"uris\": [\"buzz-isolation.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
