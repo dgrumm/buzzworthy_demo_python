@@ -148,6 +148,12 @@
 						}
 					}
 				},
+				"deployment_files": [
+					{
+						"source_path": "ci/bin/isolation-test.sh",
+						"target_path": "bin/isolation-test.sh"
+					}
+				],
 				"deployment_strategy": {
 					"canaries": 1,
 					"max_in_flight": 1,
@@ -582,10 +588,6 @@
 			{
 				"source_path": "ci/bin/start.sh",
 				"target_path": "bin/start.sh"
-			},
-			{
-				"source_path": "ci/bin/isolation-test.sh",
-				"target_path": "bin/isolation-test.sh"
 			}
 		],
 		"application_init": {
