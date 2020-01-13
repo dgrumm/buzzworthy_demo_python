@@ -364,7 +364,7 @@
 									},
 									{
 										"name": "route_registrar.routes",
-										"value": "[{\"name\": \"((application.name))-((application.shortsha))-selenium\", \"port\": 4444, \"registration_interval\": \"10s\", \"uris\": [\"buzz-selenium-((application.shortsha)).gr.calculi.io\"]}]"
+										"value": "[{\"name\": “((application.name))-selenium\", \"port\": 4444, \"registration_interval\": \"10s\", \"uris\": [“((application.name))-selenium.gr.calculi.io\"]}]"
 									},
 									{
 										"name": "route_registrar.routing_api.oauth_url",
@@ -564,13 +564,7 @@
 				"code_analysis": null
 			}
 		},
-		"default_properties": [
-			{
-				"name": "buzz.selenium_url",
-				"value": "http://selenium.gr.calculi.io/wd/hub",
-				"type": "string"
-			}
-		],
+		"default_properties": [],
 		"deployment_files": [
 			{
 				"source_path": "ci/bin/start.sh",
