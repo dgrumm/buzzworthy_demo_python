@@ -11,7 +11,7 @@ variables:
   azureServiceConnectionId: 'f3639d6e-e880-486a-a792-9e30471a2a1b'
   
   # Web app name
-  webAppName: ''
+  webAppName: 'buzzed'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
