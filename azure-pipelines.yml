@@ -47,6 +47,25 @@ stages:
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
+    - script: |
+        python -m venv antenv
+        source antenv/bin/activate
+        python -m pytest -v --junit-xml test.xml --cov=buzz --cov-report term --cov-report xml:coverage.xml tests/
+      workingDirectory: $(projectRoot)
+      displayName: "Run unit tests"
+    - task: PublishTestResults@2
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/test.xml'
+        testRunTitle: 'Publish test results for Python $(python.version)'
+    
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
+        reportDirectory: '$(System.DefaultWorkingDirectory)/**/tests'
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
