@@ -4,6 +4,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 trigger:
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Guide-Rails® (e416e0fd-6533-4ff0-925f-7f19f1309291)'
+    appType: 'webAppLinux'
+    appName: '$(webAppName)'
+    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+    runtimeStack: 'PYTHON|3.6'
 - master
 
 variables:
