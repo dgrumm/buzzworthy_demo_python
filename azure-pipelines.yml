@@ -80,14 +80,16 @@ stages:
       artifact: drop
 
 - stage: Deploy
-  displayName: 'Deploy Web App'
+  displayName: 'Deploy Web App to static VM'
   dependsOn: Build
   condition: succeeded()
   jobs:
-  - deployment: DeploymentJob
+  - deployment: VMDeploymentJob
     pool:
       vmImage: $(vmImageName)
-    environment: $(environmentName)
+    environment: 
+      name: $(environmentName)
+      resourceType: VirtualMachine
     strategy:
       runOnce:
         deploy:
@@ -104,3 +106,4 @@ stages:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+
