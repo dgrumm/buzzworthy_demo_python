@@ -1,6 +1,5 @@
 ## Buzzworthy-Demo-Python
 <!-- an old comment -->
-<!-- another inline comment -->
 This is a working application that can be used to demonstrate how to build, test, deploy and verify a complete CI/CD pipeline using Guide-Rails®
 
 Buzzworthy-Demo-Python is simple web application using Python and Flask.
