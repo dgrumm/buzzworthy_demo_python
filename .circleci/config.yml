@@ -61,7 +61,8 @@ jobs:
           name: install dependencies
           command: |
             python3 -m venv venv
-            . venv/bin/activate
+            source venv/bin/activate
+            pip install --upgrade pip
             pip install -r requirements.txt
 
       - save_cache:
@@ -72,7 +73,7 @@ jobs:
       - run:
           name: start webapp
           command: |
-            . venv/bin/activate
+            source venv/bin/activate
             nohup python -u webapp.py > output.log &
             ps -ex | grep python
 
